@@ -2,6 +2,8 @@
 
 'use strict';
 
+const { mysql } = require("./plugin");
+
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -22,6 +24,30 @@ module.exports = appInfo => {
   const userConfig = {
     // myAppName: 'egg',
   };
+
+  config.jwt = {
+    secret: "123456"
+  }
+
+  config.security = {
+    csrf : {
+      headerName: 'x-csrf-token',// 自定义请求头
+    }
+  }
+  
+  config.sequelize = {
+    dialect: 'mysql',
+    host: '127.0.0.1',
+    port: '3306',
+    user: 'root',
+    password: '',
+    database: 'myblog',
+    define: {
+      underscored: true,
+      freezeTableName: true,
+      timestamps: true,
+    }
+  }
 
   return {
     ...config,

@@ -1,0 +1,4 @@
++ mocha@8.1.3
+updated 1 package and audited 1334 packages in 16.457s
+found 17 vulnerabilities (9 low, 2 moderate, 5 high, 1 critical)
+  run `npm audit fix` to fix them, or `npm audit` for details
