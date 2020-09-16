@@ -13,7 +13,7 @@ module.exports = {
     await queryInterface.createTable('users', {
       id: { type: INTEGER, primaryKey: true, autoIncrement: true },
       username: STRING(50),
-      password: STRING(32),
+      password: STRING(100),
       nickname: STRING(50),
       cellphone: STRING(11),
       mail: STRING(50),

@@ -7,5 +7,6 @@ module.exports = app => {
   const { router, controller, jwt } = app;
   router.get('/', controller.home.index);
 
-  router.resources('users', '/users', controller.users);
+  // router.resources('users', '/users', controller.users);
+  router.post('/users/login', controller.users.login)
 };

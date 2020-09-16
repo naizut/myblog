@@ -7,50 +7,58 @@ function toInt(str) {
 }
 
 class UserController extends Controller {
+  // async index() {
+  //   const ctx = this.ctx;
+  //   const query = { limit: toInt(ctx.query.limit), offset: toInt(ctx.query.offset) };
+  //   ctx.body = await ctx.model.User.findAll(query);
+  // }
+
+  async login() {
+    const { ctx, app } = this;
+    const data = ctx.request.body;
+    const username = data.username;
+    const user = await ctx.model.User.getUserByArgs({username}, '')
+    
+    if (!user) {
+      return ctx.body = {
+        errmsg: 'User not found.',
+        errcode: 10001
+      }
+    }
+    //dataValues是 user中await后返回的字段之一
+    if (!(await ctx.model.User.compareSync(data.password, user.dataValues.password))) {
+      return ctx.body = {
+        errmsg: 'Incorrect Password.',
+        errcode: 10002,
+        errpwd: user.dataValues.password
+      }
+    }
+
+    if (data.remember) {
+      this.ctx.cookies.set('username', data.username, {
+        maxAge: 1000*360*24,
+        httpOnly: true,
+        signed: true,  //防止用户修改cookie
+        encrypt: true,  //对cookie加密  如果为true get方法也需要加上encrypt true
+      })
+    }
+
+    const token = app.jwt.sign({
+      username: data.username
+    }, app.config.jwt.secret);
+    
+    ctx.body = token;
+  }
+
+  async logout() {
+    this.ctx.cookies.set('username', null)
+    this.ctx.redirect('/')
+  }
+
   async index() {
-    const ctx = this.ctx;
-    const query = { limit: toInt(ctx.query.limit), offset: toInt(ctx.query.offset) };
-    ctx.body = await ctx.model.User.findAll(query);
-  }
-
-  async show() {
-    const ctx = this.ctx;
-    ctx.body = await ctx.model.User.findByPk(toInt(ctx.params.id));
-  }
-
-  async create() {
-    const ctx = this.ctx;
-    const { username, password } = ctx.request.body;
-    const user = await ctx.model.User.create({ username, password });
-    ctx.status = 201;
-    ctx.body = user;
-  }
-
-  async update() {
-    const ctx = this.ctx;
-    const id = toInt(ctx.params.id);
-    const user = await ctx.model.User.findByPk(id);
-    if (!user) {
-      ctx.status = 404;
-      return;
-    }
-
-    const { name, age } = ctx.request.body;
-    await user.update({ name, age });
-    ctx.body = user;
-  }
-
-  async destroy() {
-    const ctx = this.ctx;
-    const id = toInt(ctx.params.id);
-    const user = await ctx.model.User.findByPk(id);
-    if (!user) {
-      ctx.status = 404;
-      return;
-    }
-
-    await user.destroy();
-    ctx.status = 200;
+    const { ctx } = this;
+    console.log("ctx.state.user______________________:",ctx.state.user);
+    ctx.body = { code: 201, msg: '验证成功' };
   }
 }
 

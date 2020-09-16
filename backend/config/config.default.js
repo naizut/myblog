@@ -29,10 +29,25 @@ module.exports = appInfo => {
     secret: "123456"
   }
 
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET, HEAD, PUT, POST, DELETE, PATCH'
+  }
+  
   config.security = {
     csrf : {
-      headerName: 'x-csrf-token',// 自定义请求头
-    }
+      // headerName: 'x-csrf-token',// 自定义请求头
+      enable: false
+    },
+    domainWhiteList: ['http://127.0.0.1:9090']
+  }
+
+  config.session = {
+    maxAge: 30*1000*60,
+    key: 'SESSION_ID',
+    httpOnly: true,
+    encrypt: true,
+    renew: true
   }
   
   config.sequelize = {

@@ -1,12 +1,12 @@
-const path = require("path");
-const debug = process.env.NODE_ENV !== "production";
+const path = require('path')
+const debug = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   // 基本路径
-  publicPath: "/",
+  publicPath: '/',
   // 输出文件目录
-  outputDir: "dist",
-  assetsDir: "assets", // 静态资源目录 (js, css, img, fonts)
+  outputDir: 'dist',
+  assetsDir: 'assets', // 静态资源目录 (js, css, img, fonts)
   // eslint-loader 是否在保存的时候检查
   lintOnSave: true,
   chainWebpack: () => {
@@ -20,20 +20,20 @@ module.exports = {
     // webpack配置，值位对象时会合并配置，为方法时会改写配置
     if (debug) {
       // 开发环境配置
-      config.devtool = "cheap-module-eval-source-map";
+      config.devtool = 'cheap-module-eval-source-map'
     } else {
       // 生产环境配置
     }
     Object.assign(config, {
       // 开发生产共同配置
       resolve: {
-        extensions: [".js", ".vue", ".json"],
+        extensions: ['.js', '.vue', '.json'],
         alias: {
-          "@": path.resolve(__dirname, "./src") //设置路径别名
-          //...
+          '@': path.resolve(__dirname, './src') // 设置路径别名
+          // ...
         }
       }
-    });
+    })
   },
   // vue-loader 配置项
   // https://vue-loader.vuejs.org/en/options.html
@@ -60,7 +60,7 @@ module.exports = {
   },
   // use thread-loader for babel & TS in production build
   // enabled by default if the machine has more than 1 cores 构建时开启多进程处理babel编译
-  parallel: require("os").cpus().length > 1,
+  parallel: require('os').cpus().length > 1,
   // 是否启用dll
   // See https://github.com/vuejs/vue-cli/blob/dev/docs/cli-service.md#dll-mode
   // dll: false,
@@ -69,25 +69,33 @@ module.exports = {
   // see https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
   pwa: {
     iconPaths: {
-      favicon32: "../frontend/favicon.ico",
-      favicon16: "../frontend/favicon.ico",
-      appleTouchIcon: "../frontend/favicon.ico",
-      maskIcon: "../frontend/favicon.ico",
-      msTileImage: "../frontend/favicon.ico"
+      favicon32: '../frontend/favicon.ico',
+      favicon16: '../frontend/favicon.ico',
+      appleTouchIcon: '../frontend/favicon.ico',
+      maskIcon: '../frontend/favicon.ico',
+      msTileImage: '../frontend/favicon.ico'
     }
   },
   // webpack-dev-server 相关配置
   devServer: {
-    open: process.platform === "darwin",
-    host: "0.0.0.0",
+    open: process.platform === 'darwin',
+    host: '127.0.0.1',
     port: 9090,
     https: false,
     hotOnly: false,
-    proxy: null // 设置代理
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:7001/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': '/'
+        }
+      }
+    } // 设置代理
     // before: app => {}
   },
   // 第三方插件配置
   pluginOptions: {
     // ...
   }
-};
+}
