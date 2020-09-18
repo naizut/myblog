@@ -9,4 +9,9 @@ module.exports = app => {
 
   // router.resources('users', '/users', controller.users);
   router.post('/users/login', controller.users.login)
+  router.get('/articles/detail/:id', controller.articles.detail)
+  router.get('/articles/list', controller.articles.index)
+  router.post('/articles/create', controller.articles.create)
+  router.post('/articles/update', controller.articles.update)
+  router.post('/articles/delete', controller.articles.destroy)
 };

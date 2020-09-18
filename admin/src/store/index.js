@@ -5,10 +5,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token: ''
+    token: localStorage.getItem('token') ? localStorage.getItem('token') : ''
+  },
+  getters: {
+    userInfo (state) {
+      if (!state.token) {
+        state.token = localStorage.getItem('token')
+      }
+      return state.token
+    }
   },
   mutations: {
-    login: (state, data) => {
+    changeLogin: (state, data) => {
       if (data.rememberMe) {
         localStorage.token = data.token
       } else {
@@ -16,14 +24,15 @@ export default new Vuex.Store({
       }
 
       state.token = data.token
+      localStorage.setItem('token', data.token)
     },
-    logout: (state) => {
+    changeLogout: (state) => {
       localStorage.removeItem('token')
       sessionStorage.removeItem('token')
       state.token = null
     }
-  },
-  actions: {
-
   }
+  // actions: {
+
+  // }
 })

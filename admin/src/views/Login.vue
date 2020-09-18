@@ -2,7 +2,7 @@
     <div class="login-container">
         <div class="login-form-wrapper">
             <a-form
-                id="components-form-demo-normal-login"
+                id="normal-login"
                 :form="form"
                 :model="loginForm"
                 class="login-form"
@@ -15,6 +15,7 @@
                         { rules: [{ required: true, message: 'Please input your username!' }] },
                         ]"
                         placeholder="Username"
+                        autofocus
                     >
                         <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
                     </a-input>
@@ -56,33 +57,45 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'Login',
   data () {
     return {
-      loginForm: {
-        username: '',
-        password: ''
-      }
+      loginForm: {}
     }
   },
   beforeCreate () {
     this.form = this.$form.createForm(this, { name: 'normal_login' })
   },
   methods: {
+    ...mapMutations(['changeLogin']),
     handleSubmit (e) {
+      let _this = this
       e.preventDefault()
-      
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values)
+          // console.log('Received values of form: ', values)
 
           this.axios({
             method: 'post',
             url: '/api/users/login',
             data: values
           }).then(res => {
-            console.log(res.data)
+            if (res.data.token) {
+              _this.usertoken = 'Bearer ' + res.data.token
+              _this.changeLogin({ token: _this.usertoken })
+
+              let redirect = _this.$route.query.redirect
+              if (redirect) {
+                _this.$router.push(redirect)
+              } else {
+                _this.$router.push('/home')
+              }
+            } else {
+              alert(res.data.errmsg)
+            }
           }).catch(err => {
             console.log(err)
           })
@@ -101,13 +114,13 @@ export default {
     align-items: center;
     justify-content: center;
 }
-#components-form-demo-normal-login .login-form {
+#normal-login .login-form {
   max-width: 300px;
 }
-#components-form-demo-normal-login .login-form-forgot {
+#normal-login .login-form-forgot {
   float: right;
 }
-#components-form-demo-normal-login .login-form-button {
+#normal-login .login-form-button {
   width: 100%;
 }
 </style>

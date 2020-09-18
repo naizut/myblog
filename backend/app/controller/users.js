@@ -1,10 +1,10 @@
 const Controller = require('egg').Controller;
 
-function toInt(str) {
-  if (typeof str === 'number') return str;
-  if (!str) return str;
-  return parseInt(str, 10) || 0;
-}
+// function toInt(str) {
+//   if (typeof str === 'number') return str;
+//   if (!str) return str;
+//   return parseInt(str, 10) || 0;
+// }
 
 class UserController extends Controller {
   // async index() {
@@ -24,14 +24,15 @@ class UserController extends Controller {
         errmsg: 'User not found.',
         errcode: 10001
       }
+      // throw new Error('User not found.');
     }
     //dataValues是 user中await后返回的字段之一
     if (!(await ctx.model.User.compareSync(data.password, user.dataValues.password))) {
       return ctx.body = {
         errmsg: 'Incorrect Password.',
         errcode: 10002,
-        errpwd: user.dataValues.password
       }
+      // throw new Error('Incorrect Password.');
     }
 
     if (data.remember) {
@@ -47,7 +48,7 @@ class UserController extends Controller {
       username: data.username
     }, app.config.jwt.secret);
     
-    ctx.body = token;
+    ctx.body = {token: token}
   }
 
   async logout() {

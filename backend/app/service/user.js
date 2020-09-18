@@ -6,12 +6,11 @@ const Service = require('egg').Service;
 //     return parseInt(str, 10) || 0;
 // }
   
-class UserService extends Service {
-    
-    async login(userid, pwd) {
-        const {ctx} = this
-        ctx.body = await ctx.model.User.findAll(query)
-    }
+class UserService extends Service {    
+    // async login(userid, pwd) {
+    //     const {ctx} = this
+    //     ctx.body = await ctx.model.User.findAll(query)
+    // }
 }
 
 module.exports = UserService;

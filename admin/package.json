@@ -9,10 +9,12 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@tinymce/tinymce-vue": "^3.2.3",
     "ant-design-vue": "^1.6.5",
     "axios": "^0.20.0",
     "core-js": "^2.6.5",
     "less-loader": "^7.0.1",
+    "tinymce": "^5.4.2",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.5",
     "vue-router": "^3.0.3",

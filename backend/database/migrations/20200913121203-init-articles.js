@@ -15,8 +15,8 @@ module.exports = {
       content: TEXT,
       type: STRING(50),
       tag: STRING(50),
-      created_on: DATE,
-      modified_on: DATE
+      created_on: STRING(50),
+      modified_on: STRING(50)
     });
   },
 
