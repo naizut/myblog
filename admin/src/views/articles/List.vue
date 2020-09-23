@@ -1,16 +1,39 @@
 <template>
-    <div>
+    <div class="inner-wrap">
         <div>
-                <a-modal
-                title="Title"
-                :visible="visible"
-                :confirm-loading="confirmLoading"
-                @ok="handleOk"
-                @cancel="handleCancel"
-                >
-                <p>{{ ModalText }}</p>
-                </a-modal>
-            <a-row v-for="(item, index) in articles" :key="index">
+            <a-modal title="Title"
+                    :visible="visible"
+                    :confirm-loading="confirmLoading"
+                    @ok="handleOk"
+                    @cancel="handleCancel"
+            >
+            <p>{{ ModalText }}</p>
+            </a-modal>
+
+            <a-row class="first-row filter">
+                <a-col :span="6" @click="sortBy('title');selected=0">
+                    文章标题
+                    <a-icon type="arrow-up" :class="selected==0&&isSort? 'active':''" />
+                    <a-icon type="arrow-down" :class="selected==0&&!isSort? 'active':''" />
+                </a-col>
+                <a-col :span="6" @click="sortBy('type');selected=1">
+                    文章类型
+                    <a-icon type="arrow-up" :class="selected==1&&isSort? 'active':''" />
+                    <a-icon type="arrow-down" :class="selected==1&&!isSort? 'active':''" />
+                </a-col>
+                <a-col :span="3" @click="sortBy('tag');selected=2">
+                    文章标签
+                    <a-icon type="arrow-up" :class="selected==2&&isSort? 'active':''" />
+                    <a-icon type="arrow-down" :class="selected==2&&!isSort? 'active':''" />
+                </a-col>
+                <a-col :span="3" @click="sortBy('created_on');selected=3">
+                    创建时间
+                    <a-icon type="arrow-up" :class="selected==3&&isSort? 'active':''" />
+                    <a-icon type="arrow-down" :class="selected==3&&!isSort? 'active':''" />
+                </a-col>
+            </a-row>
+
+            <a-row v-for="(item, index) in articles" :key="item.id">
                 <router-link :to="{name: 'detail', params: {id: item.id}}" class="title"><a-col :span="6">{{item.title}}</a-col></router-link>
                 <a-col :span="6">{{item.type}}</a-col>
                 <a-col :span="3">{{item.tag}}</a-col>
@@ -19,6 +42,10 @@
                     <a-button type="primary" shape="circle" icon="edit" @click="toUpdate(index)"/>
                     <a-button type="primary" shape="circle" icon="delete" @click="confirmDelete(index)" />
                 </a-col>
+            </a-row>
+
+            <a-row v-for="count in pageNums" :key="count">
+                <a-col @click="switchPage(count)">{{count}}</a-col>
             </a-row>
         </div>
     </div>
@@ -32,15 +59,31 @@ export default {
           ModalText: "确认删除？",
           visible: false,
           confirmLoading: false,
-          toDelete: 0
+          toDelete: 0,
+          isSort:1,
+          selected:3,
+          pageSize: 2,
+          pageNums: 0,
+          pageIndex: 0
       }
   },
   created() {
+      var that = this
       this.axios({
           method: 'get',
           url: '/api/articles/list',
+          params: {
+              limit: that.pageSize,
+              offset: that.pageIndex,
+              counts:0
+          }
       }).then(res => {
-          this.articles = res.data
+          this.articles = res.data.rows
+          this.pageNums = Math.ceil(res.data.count / that.pageSize)
+          this.sortBy('created_on')
+          console.log(res)
+      }).catch(err=>{
+          console.log(err)
       })
   },
   methods: {
@@ -77,6 +120,36 @@ export default {
       console.log('Clicked cancel button');
       this.visible = false;
     },
+    sortByString($prop) {
+        var that = this
+        function compare(args) {
+          return function(a, b){
+            var v1 = a[args]
+            var v2 = b[args]
+            for(let i=0;i<(v1.length<=v2.length?v1.length:v2.length);i++) {
+                if(v1[i] != v2[i]){
+                    return (!that.isSort)?v1.localeCompare(v2):v2.localeCompare(v1)
+                }
+            }
+          }
+        }
+        this.articles = this.articles.sort(compare($prop))
+        that.isSort = that.isSort?0:1;
+    },
+    sortBy(field) {
+      this.sortByString(field)
+    },
+    switchPage($count) {
+        var that = this
+        this.axios({
+            method: 'get',
+            url: '/api/articles/list',
+            params: {
+                offset: $count * that.pageSize,
+                limit:  that.pageSize
+            }
+        })
+    }
   }
 }
 </script>
@@ -86,8 +159,24 @@ export default {
     button {
         margin: 0 5px;
     }
+    i {
+        visibility: hidden;
+        &.active {
+            visibility: visible;
+        }
+    }
 }
 a.title {
     transition: color 0s;
+}
+.first-row {
+    margin-bottom: 20px;
+}
+.filter >*{
+    cursor: pointer;
+    padding-left: 30px;
+}
+.inner-wrap {
+    min-height: 80vh;
 }
 </style>

@@ -18,8 +18,8 @@ class ArticleController extends Controller {
 
   async index() {
     const ctx = this.ctx;
-    const query = { limit: toInt(ctx.query.limit), offset: toInt(ctx.query.offset) };
-    ctx.body = await ctx.model.Article.findAll(query);
+    const query = { limit: toInt(ctx.query.limit), offset: toInt(ctx.query.offset), order: [['created_on', 'desc' ]] };
+    ctx.body = await ctx.model.Article.findAndCountAll(query);
   }
 
   async destroy() {

@@ -1,3 +1,4 @@
+const CompressionPlugin = require('compression-webpack-plugin')
 const path = require('path')
 const debug = process.env.NODE_ENV !== 'production'
 
@@ -23,6 +24,17 @@ module.exports = {
       config.devtool = 'cheap-module-eval-source-map'
     } else {
       // 生产环境配置
+      return {
+        plugins: [
+          new CompressionPlugin({
+            algorithm: 'gzip',
+            test: /\.(js|css)$/,// 匹配文件名
+            threshold: 10240, // 对超过10k的数据压缩
+            deleteOriginalAssets: false, // 不删除源文件
+            minRatio: 0.8 // 压缩比
+          })
+        ]
+      }
     }
     Object.assign(config, {
       // 开发生产共同配置
@@ -83,6 +95,7 @@ module.exports = {
     port: 9090,
     https: false,
     hotOnly: false,
+    historyApiFallback: true,
     proxy: {
       '/api': {
         target: 'http://127.0.0.1:7001/',
