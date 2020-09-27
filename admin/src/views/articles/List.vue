@@ -75,7 +75,6 @@ export default {
           params: {
               limit: that.pageSize,
               offset: that.pageIndex,
-              counts:0
           }
       }).then(res => {
           this.articles = res.data.rows
@@ -145,9 +144,11 @@ export default {
             method: 'get',
             url: '/api/articles/list',
             params: {
-                offset: $count * that.pageSize,
+                offset: ($count - 1) * that.pageSize,
                 limit:  that.pageSize
             }
+        }).then(res=>{
+            that.articles = res.data.rows
         })
     }
   }
