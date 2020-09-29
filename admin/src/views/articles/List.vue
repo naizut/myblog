@@ -1,6 +1,6 @@
 <template>
-    <div class="inner-wrap">
-        <div>
+    <div class="inner-wrap view-list articles">
+        <div class="content">
             <a-modal title="Title"
                     :visible="visible"
                     :confirm-loading="confirmLoading"
@@ -43,10 +43,20 @@
                     <a-button type="primary" shape="circle" icon="delete" @click="confirmDelete(index)" />
                 </a-col>
             </a-row>
-
-            <a-row v-for="count in pageNums" :key="count">
-                <a-col @click="switchPage(count)">{{count}}</a-col>
-            </a-row>
+        </div>
+        <div class="view-pager">
+            <ul>
+                <li v-for="count in pageNums" :key="count" @click="switchPage(count)">{{count}}</li>
+            </ul>
+            <a-dropdown>
+            <a-menu slot="overlay" @click="setPageSize">
+                <a-menu-item key="1">5</a-menu-item>
+                <a-menu-item key="2">10</a-menu-item>
+                <a-menu-item key="3" v-show="false">15</a-menu-item>
+                <a-menu-item key="4">20</a-menu-item>
+            </a-menu>
+            <a-button style="margin-left: 8px"> {{pageSize}} 条/页 <a-icon type="down" /> </a-button>
+            </a-dropdown>
         </div>
     </div>
 </template>
@@ -62,9 +72,11 @@ export default {
           toDelete: 0,
           isSort:1,
           selected:3,
-          pageSize: 2,
+          pageTotal: 0,
+          pageSize: 5,
           pageNums: 0,
-          pageIndex: 0
+          pageIndex: 0,
+          current: 1
       }
   },
   created() {
@@ -78,6 +90,7 @@ export default {
           }
       }).then(res => {
           this.articles = res.data.rows
+          this.pageTotal = res.data.count
           this.pageNums = Math.ceil(res.data.count / that.pageSize)
           this.sortBy('created_on')
           console.log(res)
@@ -96,6 +109,12 @@ export default {
         this.visible = true
         this.toDelete = i
         this.ModalText = '删除文章' + this.articles[i].title + '?';
+        this.pageNums -= 1
+    },
+    setPageSize(e) {
+        this.pageSize = parseInt(e.key) * 5
+        this.pageNums = Math.ceil(this.pageTotal / this.pageSize)
+        this.switchPage(this.current)
     },
     handleOk(e) {
       var articles = this.articles
@@ -140,6 +159,7 @@ export default {
     },
     switchPage($count) {
         var that = this
+        this.current = $count
         this.axios({
             method: 'get',
             url: '/api/articles/list',
@@ -167,6 +187,10 @@ export default {
         }
     }
 }
+.articles.view-list >.content {
+    position: relative;
+    margin-bottom: 50px;
+}
 a.title {
     transition: color 0s;
 }
@@ -178,6 +202,31 @@ a.title {
     padding-left: 30px;
 }
 .inner-wrap {
-    min-height: 80vh;
+    // min-height: 80vh;
+}
+.view-pager {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        li {
+            list-style: none;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all .2s ease-in;
+            &:hover {
+                border: 1px solid #000;
+            }
+        }
+    }
 }
 </style>
