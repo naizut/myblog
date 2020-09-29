@@ -34,19 +34,29 @@ const router = new Router({
               path: 'list',
               name: 'list',
               component: () => import('@/views/articles/List.vue')
+              
             },
             {
               path: 'create',
               name: 'create',
-              component: () => import('@/views/articles/Create.vue')
+              component: () => import('@/views/articles/Create.vue'),
+              meta: {
+                requireAuth: true
+              }
             },{
               path: 'detail/:id',
               name: 'detail',
               component: () => import('@/views/articles/Detail.vue'),
+              meta: {
+                requireAuth: true
+              }
             },{
               path: 'update/:id',
               name: 'update',
-              component: () => import('@/views/articles/Update.vue')
+              component: () => import('@/views/articles/Update.vue'),
+              meta: {
+                requireAuth: true
+              }
             }
           ]
         },

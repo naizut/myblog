@@ -53,6 +53,13 @@ class ArticleController extends Controller {
     await article.update({ title, content, type, tag, modified_on });
     ctx.body = article;
   }
+
+  async search() {
+    const ctx = this.ctx;
+    const keywords = ctx.query.keyword;
+    console.log(keywords)
+    ctx.body = await ctx.model.Article.findAll({ where: { title: { $like: `%${keywords}%` } } });
+  }
 }
 
 module.exports = ArticleController;

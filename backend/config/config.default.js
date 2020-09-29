@@ -50,6 +50,7 @@ module.exports = appInfo => {
     renew: true
   }
   
+  const Op = require('sequelize').Op;
   config.sequelize = {
     dialect: 'mysql',
     host: '127.0.0.1',
@@ -61,7 +62,11 @@ module.exports = appInfo => {
       underscored: true,
       freezeTableName: true,
       timestamps: true,
-    }
+    },
+
+    operatorsAliases:{
+      $like: Op.like,
+    },
   }
 
   return {

@@ -14,4 +14,6 @@ module.exports = app => {
   router.post('/articles/create', controller.articles.create)
   router.post('/articles/update', controller.articles.update)
   router.post('/articles/delete', controller.articles.destroy)
+
+  router.get('/search', controller.articles.search)
 };
