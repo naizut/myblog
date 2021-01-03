@@ -64,9 +64,10 @@ module.exports = appInfo => {
       timestamps: true,
     },
 
-    operatorsAliases:{
-      $like: Op.like,
-    },
+    // operatorsAliases:{
+    //   $like: Op.like,
+    // },
+    // operatorsAliases: false
   }
 
   return {

@@ -1,3 +1,5 @@
+const { sequelize } = require('../../config/config.unittest');
+
 const Controller = require('egg').Controller;
 
 function toInt(str) {
@@ -58,7 +60,9 @@ class ArticleController extends Controller {
     const ctx = this.ctx;
     const keywords = ctx.query.keyword;
     console.log(keywords)
-    ctx.body = await ctx.model.Article.findAll({ where: { title: { $like: `%${keywords}%` } } });
+    const Sequelize = require('sequelize')
+    const Op = Sequelize.Op
+    ctx.body = await ctx.model.Article.findAll({ where: { title: { [Op.like]: `%${keywords}%` } } });
   }
 }
 

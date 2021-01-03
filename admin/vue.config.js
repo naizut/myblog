@@ -65,6 +65,13 @@ module.exports = {
         lessOptions: {
           javascriptEnabled: true
         }
+      },
+      sass: {
+        prependData: `
+          @import "@/assets/styles/variable.scss";
+          @import "@/assets/styles/mixin.scss";
+          @import "@/assets/styles/global.scss";
+        `
       }
     },
     // 启用 CSS modules for all css / pre-processor files.
