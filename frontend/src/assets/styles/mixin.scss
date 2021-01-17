@@ -1,0 +1,22 @@
+@mixin transform($property) {
+    transform: $property;
+    -ms-transform: $property;
+    -moz-transform: $property;
+    -webkit-transform: $property;
+    -o-transform: $property;
+}
+
+@mixin transition($property) {
+    transition: $property;
+    -ms-transition: $property;
+    -moz-transition: $property;
+    -webkit-transition: $property;
+    -o-transition: $property;
+}
+
+@mixin linear-gradient ($colorFrom, $colorTo){
+    background:-moz-linear-gradient(top, $colorFrom, $colorTo);
+    background:-webkit-linear-gradient(top ,$colorFrom, $colorTo);
+    background:-ms-linear-gradient(top ,$colorFrom, $colorTo);
+    background:linear-gradient(top ,$colorFrom, $colorTo);
+}
