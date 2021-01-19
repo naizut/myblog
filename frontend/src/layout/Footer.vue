@@ -1,12 +1,12 @@
 <template>
-  <footer class="footer">
-    <div class="inner-wrap">
-      <p class="mt20 f20">
-        <span>Copyright © 2018</span>
-        <span><a href="https://beian.aliyun.com/">沪ICP备16033447号-3</a></span>
-      </p>
+  <nav class="footer">
+    <div class="inner-wrap f12 text-center">
+      <span>Copyright © 2018</span>
+      <span class="ml5 bei-an">
+        <a href="https://beian.aliyun.com/">沪ICP备16033447号-3</a>
+      </span>
     </div>
-  </footer>
+  </nav>
 </template>
 <script>
 export default {
@@ -18,10 +18,12 @@ export default {
 .footer {
   border-top: 1px solid $mintBlue;
   background-color: #000;
-  color: #ddd;
+  color: #666;
   .inner-wrap {
-    p {
-      line-height: 45px;
+    line-height: 45px;
+    font-family: 'Alfphabet';
+    .bei-an a {
+      color: #666;
     }
   }
 }
