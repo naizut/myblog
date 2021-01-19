@@ -1,32 +1,27 @@
 <template>
-  <nav class="footer">
-    <div class="footer__content">
-      <section>
-        <ul>
-          <li>Copyright © 2020</li>
-          <li>
-            <a href="https://beian.aliyun.com/">沪ICP备16033447号-3</a>
-          </li>
-        </ul>
-      </section>
+  <footer class="footer">
+    <div class="inner-wrap">
+      <p class="mt20">
+        <span>Copyright © 2018</span>
+        <span><a href="https://beian.aliyun.com/">沪ICP备16033447号-3</a></span>
+      </p>
     </div>
-  </nav>
+  </footer>
 </template>
 <script>
 export default {
-  name: "Footer",
-  components: {}
-};
+  name: 'Footer',
+  components: {},
+}
 </script>
 <style lang="scss">
 .footer {
   border-top: 1px solid $mintBlue;
   background-color: #000;
-  color: #fff;
-  ul {
-    margin-top: 20px;
-    a {
-      color: #fff;
+  color: #ddd;
+  .inner-wrap {
+    p {
+      line-height: 45px;
     }
   }
 }
