@@ -71,7 +71,6 @@ module.exports = {
           @import "@/assets/styles/variable.scss";
           @import "@/assets/styles/mixin.scss";
           @import "@/assets/styles/global.scss";
-          @import "@/assets/styles/utils.scss";
         `
       }
     },
