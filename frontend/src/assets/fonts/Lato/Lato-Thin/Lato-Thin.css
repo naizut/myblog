@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "Lato-Thin";
+  src: url("Lato-Thin.woff2") format("woff2"),
+       url("Lato-Thin.woff") format("woff"),
+       url("Lato-Thin.ttf") format("truetype"),
+       url("Lato-Thin.eot") format("embedded-opentype"),
+       url("Lato-Thin.svg") format("svg"),
+       url("Lato-Thin.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
