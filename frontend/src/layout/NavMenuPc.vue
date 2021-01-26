@@ -33,9 +33,14 @@ export default {
   },
   methods: {
     onSearch(value) {
-      // this.$router.push({name:'Search', params: {title: value}})
       if (value) {
-        this.$router.push({ path: '/search?keyword=' + value })
+        // this.$router.push({ path: '/search?keyword=' + value })
+        this.$router.push({
+          path: '/search',
+          query: {
+            keyword: value,
+          },
+        })
       }
     },
   },

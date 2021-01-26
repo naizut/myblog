@@ -1,8 +1,10 @@
 <template>
   <nav class="header">
     <div class="header__content">
-      <router-link to="/" class="logo">
-        <img src="@/assets/brand.png" alt="Logo">
+      <router-link to="/"
+                   class="logo">
+        <img src="@/assets/brand.png"
+             alt="Logo">
         <span>s</span>
       </router-link>
       <NavMenuPc />
@@ -10,13 +12,13 @@
   </nav>
 </template>
 <script>
-import NavMenuPc from "./NavMenuPc";
+import NavMenuPc from './NavMenuPc'
 export default {
-  name: "Header",
+  name: 'Header',
   components: {
-    NavMenuPc
-  }
-};
+    NavMenuPc,
+  },
+}
 </script>
 <style lang="scss" scoped>
 .header {
@@ -27,7 +29,6 @@ export default {
   .header__content {
     margin: 0 auto;
     max-width: 1200px;
-    min-width: 1000px;
     display: flex;
     a.logo {
       width: 200px;
@@ -40,7 +41,8 @@ export default {
       span {
         color: $mintBlue;
         font-size: 50px;
-        font-family:Baskerville, 'Goudy Old Style', Palatino, 'Book Antiqua', Symbol, serif;
+        font-family: Baskerville, 'Goudy Old Style', Palatino, 'Book Antiqua',
+          Symbol, serif;
       }
     }
   }
