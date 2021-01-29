@@ -5,7 +5,8 @@
     </header>
     <div v-for="article in articles"
          :key="article.id"
-         class="views-row">
+         class="views-row"
+    >
       <h1>
         <router-link :to="{ name: 'BlogDetail', params: { id: article.id } }">
           {{ article.title }}
@@ -19,18 +20,18 @@ export default {
   name: 'Blog',
   data() {
     return {
-      articles: {},
+      articles: {}
     }
   },
   created() {
     this.axios({
       url: '/api/articles/list',
-      method: 'get',
+      method: 'get'
     }).then((res) => {
       console.log(res)
       this.articles = res.data.rows
     })
-  },
+  }
 }
 </script>
 <style lang="scss" scoped>

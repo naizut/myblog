@@ -1,3 +1,3 @@
 module.exports = {
-  title: "KysLab"
-};
+  title: 'KysLab'
+}

@@ -1,13 +1,13 @@
 <template>
-  <div id="app" v-cloak>
+  <div v-cloak id="app">
     <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: "App"
-};
+  name: 'App'
+}
 </script>
 
 <style lang="scss">

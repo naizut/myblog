@@ -5,10 +5,12 @@
     <ul>
       <li v-for="i in list"
           v-once
-          :key="i.id">{{ i.id }}</li>
+          :key="i.id"
+      >{{ i.id }}</li>
     </ul>
     <input v-model="iv"
-           type="text">
+           type="text"
+    >
   </div>
 </template>
 
@@ -19,30 +21,29 @@ export default {
     return {
       afk: 'gg',
       list: [1, 233, 45],
-      iv: '',
+      iv: ''
     }
   },
   computed: {
-    afked: function () {
-      this.list = [1, 2, 3]
+    afked: function() {
       return this.iv + '5'
-    },
+    }
   },
   watch: {
     iv(newV, oldV) {
       console.log(newV)
       console.log('old:', oldV)
-    },
+    }
   },
   created() {
     this.axios({
       url: '/api/articles/list',
-      method: 'get',
+      method: 'get'
     }).then((res) => {})
   },
   beforeCreate() {},
   mounted() {
     console.log(this)
-  },
+  }
 }
 </script>

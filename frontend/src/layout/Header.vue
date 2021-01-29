@@ -2,9 +2,11 @@
   <nav class="header">
     <div class="header__content">
       <router-link to="/"
-                   class="logo">
+                   class="logo"
+      >
         <img src="@/assets/brand.png"
-             alt="Logo">
+             alt="Logo"
+        >
         <span>s</span>
       </router-link>
       <NavMenuPc />
@@ -16,8 +18,8 @@ import NavMenuPc from './NavMenuPc'
 export default {
   name: 'Header',
   components: {
-    NavMenuPc,
-  },
+    NavMenuPc
+  }
 }
 </script>
 <style lang="scss" scoped>

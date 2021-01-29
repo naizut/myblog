@@ -11,7 +11,7 @@
 <script>
 export default {
   name: 'Footer',
-  components: {},
+  components: {}
 }
 </script>
 <style lang="scss" scoped>
