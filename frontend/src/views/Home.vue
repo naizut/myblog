@@ -3,45 +3,46 @@
     <span :ass="afk">ada</span>
     <p>{{ afked }}gg</p>
     <ul>
-      <li v-for="i in list" v-once :key="i.id">{{ i.id }}</li>
+      <li v-for="i in list"
+          v-once
+          :key="i.id">{{ i.id }}</li>
     </ul>
-    <input type="text" v-model="iv" />
+    <input v-model="iv"
+           type="text">
   </div>
 </template>
 
 <script>
 export default {
-  name: "home",
+  name: 'Home',
   data() {
     return {
-      afk: "gg",
+      afk: 'gg',
       list: [1, 233, 45],
-      iv: "",
-    };
-  },
-  created() {
-    this.axios({
-      url: "/api/articles/list",
-      method: "get",
-    }).then((res) => {});
-  },
-  beforeCreate() {
-    
-  },
-  mounted() {
-    console.log(this);
+      iv: '',
+    }
   },
   computed: {
     afked: function () {
-      this.list = [1, 2, 3];
-      return this.iv + "5";
+      this.list = [1, 2, 3]
+      return this.iv + '5'
     },
   },
   watch: {
     iv(newV, oldV) {
-      console.log(newV);
-      console.log("old:", oldV);
+      console.log(newV)
+      console.log('old:', oldV)
     },
   },
-};
+  created() {
+    this.axios({
+      url: '/api/articles/list',
+      method: 'get',
+    }).then((res) => {})
+  },
+  beforeCreate() {},
+  mounted() {
+    console.log(this)
+  },
+}
 </script>

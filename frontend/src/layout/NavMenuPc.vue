@@ -2,13 +2,13 @@
   <ul class="nav-menu-pc">
     <li v-for="route in routes"
         :key="route.id"
-        :class="{'active': route.path === index}">
-      <router-link :to="route.path">{{route.name}}</router-link>
+        :class="{ active: route.path === index }">
+      <router-link :to="route.path">{{ route.name }}</router-link>
     </li>
     <a-input-search placeholder="Search title"
                     enter-button
-                    @search="onSearch"
-                    autofocus />
+                    autofocus
+                    @search="onSearch" />
   </ul>
 </template>
 <script>
@@ -31,6 +31,18 @@ export default {
       ],
     }
   },
+  watch: {
+    $route(to, from) {
+      this.index = window.location.pathname
+      if (to.path == from.path) {
+        this.$router.go(0)
+        this.$router.push({ path: '/search?keyword=' + value })
+      }
+    },
+  },
+  mounted() {
+    this.index = window.location.pathname
+  },
   methods: {
     onSearch(value) {
       if (value) {
@@ -43,18 +55,6 @@ export default {
         })
       }
     },
-  },
-  watch: {
-    $route(to, from) {
-      this.index = window.location.pathname
-      if (to.path == from.path) {
-        this.$router.go(0)
-        this.$router.push({ path: '/search?keyword=' + value })
-      }
-    },
-  },
-  mounted() {
-    this.index = window.location.pathname
   },
 }
 </script>

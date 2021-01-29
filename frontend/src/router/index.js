@@ -35,7 +35,10 @@ const router = new Router({
         {
           path: "about",
           name: "About",
-          component: ()=>import("@/views/About")
+          component: ()=>import("@/views/About"),
+          meta: {
+            title: 'About'
+          }
         },
         {
           path: "search",
