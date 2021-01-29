@@ -8,9 +8,9 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 
-import { Input } from 'ant-design-vue'
+import Antd from 'ant-design-vue'
 import 'ant-design-vue/lib/input/style/css'
-Vue.use(Input)
+Vue.use(Antd)
 
 Vue.config.productionTip = false
 

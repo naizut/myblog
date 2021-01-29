@@ -13,7 +13,7 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'Index',
       redirect: '/home',
       component: () => import('@/layout'),
       children: [

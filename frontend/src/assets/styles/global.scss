@@ -7,7 +7,7 @@ ul {
 }
 
 #app {
-  font-family: "Lato-Thin", Helvetica, Arial, sans-serif;
+  font-family: "Lato-Light", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -17,6 +17,13 @@ ul {
 body {
   margin: 0;
   padding: 0;
+}
+
+blockquote {
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  font-size: 17.5px;
+  border-left: 5px solid #eee;
 }
 
 pre {
