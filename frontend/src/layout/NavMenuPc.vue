@@ -1,21 +1,32 @@
 <template>
-  <a-row class="navbar-container">
-    <a-col :span="5" class="pull-right">
-      <ul class="nav-menu-pc">
+  <el-row class="navbar-container">
+    <div class="pull-right">
+      <div class="search-zone"
+           @click="addWidth()"
+           @mouseenter="addWidth()"
+      >
+        <el-input v-model="searchText"
+                  placeholder="Search Title."
+                  :class="searchActive?'active':''"
+                  @search="onSearch"
+        >
+          <i slot="suffix"
+             class="el-input__icon el-icon-search"
+          />
+        </el-input>
+      </div>
+    </div>
+    <div class="pull-right">
+      <ul class="nav-menu-pc pull-right pr20">
         <li v-for="route in routes"
             :key="route.id"
             :class="{ active: route.path === index }"
         >
           <router-link :to="route.path">{{ route.name }}</router-link>
         </li>
-        <a-input-search placeholder="Search title"
-                        auto-focus
-                        style="width: 250px"
-                        @search="onSearch"
-        />
       </ul>
-    </a-col>
-  </a-row>
+    </div>
+  </el-row>
 
 </template>
 <script>
@@ -35,7 +46,9 @@ export default {
           name: 'Blog',
           path: '/blog'
         }
-      ]
+      ],
+      searchActive: false,
+      searchText: ''
     }
   },
   watch: {
@@ -50,6 +63,12 @@ export default {
     this.index = window.location.pathname
   },
   methods: {
+    addWidth() {
+      this.searchActive = true
+    },
+    reduceWidth() {
+      this.searchActive = false
+    },
     onSearch(value) {
       if (value) {
         this.$router.push({
@@ -63,12 +82,11 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .navbar-container {
   width: 100%;
+  .el-col { transition: all 0.6s ease-in-out; }
   ul.nav-menu-pc {
-    list-style: none;
-    width: 100%;
     margin: 0;
     display: flex;
     align-items: center;
@@ -84,22 +102,24 @@ export default {
         display: block;
         padding: 0 20px;
       }
-      &.active {
-        a {
-          color: $mintBlue;
-        }
-      }
+      &.active a { color : $mintBlue; }
       &:hover {
         // background-color: #333;
         opacity: 0.7;
       }
     }
   }
+  .search-zone {
+    cursor: pointer;
+  }
   .ant-input-group > .ant-input:first-child {
     border: none;
     border-bottom: 1px solid $lightGrey;
   }
-  .ant-input-search-enter-button input + .ant-input-group-addon .ant-input-search-button {
+  .ant-input-search-enter-button
+    input
+    + .ant-input-group-addon
+    .ant-input-search-button {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
   }

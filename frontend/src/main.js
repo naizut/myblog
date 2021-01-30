@@ -8,9 +8,11 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 
-import Antd from 'ant-design-vue'
-import 'ant-design-vue/lib/input/style/css'
-Vue.use(Antd)
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
+
+import '@/assets/styles/index.scss'
 
 Vue.config.productionTip = false
 

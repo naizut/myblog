@@ -9,7 +9,7 @@
         >
         <span>s</span>
       </router-link>
-      <NavMenuPc />
+      <NavMenuPc ref="navbarPC" />
     </div>
   </nav>
 </template>
@@ -19,6 +19,11 @@ export default {
   name: 'Header',
   components: {
     NavMenuPc
+  },
+  methods: {
+    shortenSearchInput() {
+      this.$refs.navbarPC.reduceWidth()
+    }
   }
 }
 </script>

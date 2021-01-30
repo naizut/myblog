@@ -1,3 +1,23 @@
-.ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
-  border-color: $mintBlue !important;
+ul{
+  padding-inline-start: 0;
+}
+
+.search-zone {
+  .el-input {
+    line-height: 100px;
+    padding-right: 30px;
+    width: 100%;
+    input {
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid #000;
+
+      padding-left: 0;
+      padding-right: 0;
+      transition: all .6s;
+      width: 0;
+    }
+    &.active .el-input__inner, &.active .el-input__inner:focus { width: 200px !important; }
+  }
+  
 }

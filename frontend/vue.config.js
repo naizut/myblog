@@ -36,6 +36,12 @@ module.exports = {
         ]
       }
     }
+    config['externals'] = {
+      // 'vue-router': 'VueRouter',
+      // Vuex: 'Vuex',
+      axios: 'axios',
+      moment: 'moment'
+    }
     Object.assign(config, {
       // 开发生产共同配置
       resolve: {
@@ -68,11 +74,6 @@ module.exports = {
       },
       sass: {
         prependData: `
-          @import "@/assets/styles/variable.scss";
-          @import "@/assets/styles/mixin.scss";
-          @import "@/assets/styles/global.scss";
-          @import "@/assets/styles/utils.scss";
-          @import "@/assets/styles/reset.scss";
         `
       }
     },
