@@ -19,5 +19,11 @@ ul{
     }
     &.active .el-input__inner, &.active .el-input__inner:focus { width: 200px !important; }
   }
-  
 }
+
+.to-do-list {
+  .el-input .el-input__inner { height: 50px; }
+}
+
+.el-input .el-input__inner { border-radius: 0; }
+.el-input.is-active .el-input__inner, .el-input__inner:focus { border-color: #80ffff; }

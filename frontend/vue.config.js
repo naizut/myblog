@@ -74,6 +74,8 @@ module.exports = {
       },
       sass: {
         prependData: `
+        @import "@/assets/styles/variable.scss";
+
         `
       }
     },

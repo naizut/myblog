@@ -1,5 +1,5 @@
 <template>
-  <el-row class="navbar-container">
+  <div class="navbar-container">
     <div class="pull-right">
       <div class="search-zone"
            @click="addWidth()"
@@ -8,7 +8,7 @@
         <el-input v-model="searchText"
                   placeholder="Search Title."
                   :class="searchActive?'active':''"
-                  @search="onSearch"
+                  @keyup.enter.native="onSearch(searchText)"
         >
           <i slot="suffix"
              class="el-input__icon el-icon-search"
@@ -26,7 +26,7 @@
         </li>
       </ul>
     </div>
-  </el-row>
+  </div>
 
 </template>
 <script>
@@ -45,6 +45,11 @@ export default {
           id: 0,
           name: 'Blog',
           path: '/blog'
+        },
+        {
+          id: 2,
+          name: 'Tools',
+          path: '/tools'
         }
       ],
       searchActive: false,

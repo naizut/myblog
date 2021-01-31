@@ -26,6 +26,10 @@ blockquote {
   border-left: 5px solid #eee;
 }
 
+input {
+  font-family: 'Lato-Thin';
+}
+
 pre {
   word-wrap: normal;
   word-break: break-all;
@@ -41,4 +45,9 @@ pre {
   color: #ccc;
   background: #2d2d2d;
   text-align: left;
+}
+
+.title {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
 }
