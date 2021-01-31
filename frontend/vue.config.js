@@ -39,7 +39,6 @@ module.exports = {
     config['externals'] = {
       // 'vue-router': 'VueRouter',
       // Vuex: 'Vuex',
-      axios: 'axios',
       moment: 'moment'
     }
     Object.assign(config, {
