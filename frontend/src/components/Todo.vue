@@ -1,7 +1,10 @@
 <template>
   <div class="to-do-list">
     <el-row class="text-left f16 mb20 time-remain">Till the end of today: {{ timeRemain }} </el-row>
-    <el-row class="mb15 f24 title text-left">To dos :</el-row>
+    <el-row class="mb15 f24 title text-left">
+      <span class="pull-left">To dos :</span>
+      <el-button class="pull-right" @click="clearAll()">Clear</el-button>
+    </el-row>
     <!--使用draggable组件-->
     <el-row>
       <el-col :span="22">
@@ -119,6 +122,10 @@ export default {
       } else {
         this.needInput = true
       }
+    },
+    clearAll() {
+      this.toDoList = []
+      this.doneList = []
     },
     removeToDo(id) {
       const done = this.toDoList.find(todo => todo.id == id)
