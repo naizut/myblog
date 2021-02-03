@@ -1,5 +1,5 @@
 <template>
-  <div class="to-do-list">
+  <div class="app to-do-list page-content-wrap">
     <el-row class="text-left f16 mb20 time-remain">Till the end of today: {{ timeRemain }} </el-row>
     <el-row class="mb15 f24 title text-left">
       <span class="pull-left">To dos :</span>

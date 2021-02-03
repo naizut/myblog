@@ -41,12 +41,24 @@ const router = new Router({
           }
         },
         {
-          path: 'tools',
+          path: 'tools/index',
           name: 'Tools',
-          component: () => import('@/views/Tools'),
+          component: () => import('@/views/tools/index'),
           meta: {
             title: 'Tools'
           }
+        },
+        {
+          path: 'tools',
+          redirect: '/tools/index',
+          component: { render: c => c('router-view') },
+          children: [
+            {
+              path: 'to-do-list',
+              name: 'ToDoList',
+              component: () => import('@/views/tools/to-do-list')
+            }
+          ]
         },
         {
           path: 'search',
