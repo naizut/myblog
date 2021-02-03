@@ -15,6 +15,11 @@ npm run serve
 npm run build
 ```
 
+### Auto git and deploy
+```
+npm run commit
+```
+
 ### Run your tests
 ```
 npm run test
