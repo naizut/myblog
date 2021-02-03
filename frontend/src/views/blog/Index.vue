@@ -1,5 +1,5 @@
 <template>
-  <div class="views-container">
+  <div class="views-container page-content-wrap">
     <header class="views-header">
       <div class="views-filters" />
     </header>

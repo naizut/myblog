@@ -1,5 +1,5 @@
 <template>
-  <el-container class="my-tools">
+  <el-container class="my-tools page-content-wrap">
     <el-main class="pl0">
       <el-row :gutter="20">
         <el-col :span="12">

@@ -2,7 +2,7 @@
   <div class="page-container layout">
     <Header ref="header" />
     <el-container class="layout__content-container" @click.native="shortenSearchInput()">
-      <el-main class="layout__content">
+      <el-main class="layout__content pd0 mg0">
         <router-view />
       </el-main>
     </el-container>
@@ -33,8 +33,7 @@ export default {
     height: calc(100vh - 146px);
     position: relative;
     .layout__content {
-      margin: 0 auto;
-      max-width: 1200px;
+
     }
   }
 }
