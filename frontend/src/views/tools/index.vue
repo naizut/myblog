@@ -3,7 +3,7 @@
     <el-header>Tools</el-header>
     <el-main>
       <el-row :gutter="20">
-        <el-col :span="12"
+        <el-col :span="8"
                 class="app pd20"
                 @click.native="goTo('ToDoList')"
         >
