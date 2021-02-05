@@ -1,6 +1,9 @@
 <template>
   <div class="search-result">
-    <span>为您找到以下结果:</span>
+    <el-row>
+      <span>Search result for : </span>
+      <span class="text-bold">'{{ keyword }}'</span>
+    </el-row>
     <section>
       <div v-for="article in articles" :key="article.id">
         <router-link :to="{name: 'BlogDetail', params: {id: article.id}}">
@@ -15,14 +18,14 @@ export default {
     name: 'Search',
     data() {
         return {
-            keyWord: this.$route.query.keyword,
+            keyword: this.$route.query.keyword,
             articles: {}
         }
     },
     mounted() {
         this.axios({
             method: 'get',
-            url: '/api/search?keyword=' + this.keyWord
+            url: '/api/search?keyword=' + this.keyword
         }).then(res => {
             this.articles = res.data
         })
