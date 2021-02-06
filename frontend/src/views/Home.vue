@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <span :ass="afk">ada</span>
+    <span :ass="afk" />
+    <el-row>
+      Hello Welcome 2 Ky's lab
+    </el-row>
     <p>{{ afked }}gg</p>
     <ul>
       <li v-for="i in list"
