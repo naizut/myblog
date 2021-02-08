@@ -4,7 +4,6 @@
     <el-row>
       Hello Welcome 2 Ky's lab
     </el-row>
-    <p>{{ afked }}gg</p>
     <ul>
       <li v-for="i in list"
           v-once
