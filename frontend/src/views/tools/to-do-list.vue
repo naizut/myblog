@@ -1,6 +1,7 @@
 <template>
   <div class="app to-do-list page-content-wrap">
-    <el-row class="text-left f16 mb20 time-remain">Till the end of today: {{ timeRemain }} </el-row>
+    <el-row class="text-left f16 mb20 time-remain">Till the end of today: {{ hoursRemain }} </el-row>
+    <el-row class="text-left f16 mb20 time-remain">Till the end of closing time: {{ workHoursRemain }} </el-row>
     <el-row class="mb15 f24 title text-left">
       <span class="pull-left">To dos :</span>
       <el-button class="pull-right" @click="clearAll()">Clear</el-button>
@@ -95,7 +96,8 @@ export default {
   data() {
     return {
       drag: false,
-      timeRemain: moment.duration(moment().endOf('day') - moment()).hours(),
+      hoursRemain: moment.duration(moment().endOf('day') - moment()).hours(),
+      workHoursRemain: moment.duration(moment().endOf('day') - moment()).hours(),
       needInput: false,
       toDoText: '',
       // 定义要被拖拽对象的数组
@@ -106,7 +108,8 @@ export default {
   },
   mounted() {
     setInterval(() => {
-      this.timeRemain = moment.duration(moment().endOf('day') - moment()).humanize()
+      this.hoursRemain = moment.duration(moment().endOf('day') - moment()).humanize()
+      this.workHoursRemain = moment.duration(moment().hour(18).minute(0).second(0) - moment()).humanize()
     }, 1000)
   },
   methods: {
