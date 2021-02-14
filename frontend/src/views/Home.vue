@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <span :ass="afk" />
     <el-row>
       Hello Welcome 2 Ky's lab
     </el-row>
@@ -21,7 +20,6 @@ export default {
   name: 'Home',
   data() {
     return {
-      afk: 'gg',
       list: [1, 233, 45],
       iv: ''
     }
