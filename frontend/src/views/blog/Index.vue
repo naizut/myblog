@@ -1,11 +1,11 @@
 <template>
-  <div class="page-content-wrap">
+  <div class="page-content-wrap article-list mt50">
     <header class="views-header">
       <div class="views-filters" />
     </header>
     <el-row v-for="article in articles"
             :key="article.id"
-            class="article mt50"
+            class="article mt20 pd20"
     >
       <el-row class="title">
         <h1>
@@ -50,27 +50,25 @@ export default {
 .page-content-wrap {
   .article {
     border-bottom: 1px solid #666;
+    box-shadow: 0 2px 8px 0 rgba(58,128,205,0.2);
     text-align: left;
     padding-left: 20px;
     .tag {
-      border: 1px solid #666;
-      border-bottom: 1px solid #fff;
       color: #666;
       cursor: pointer;
       font-size: 14px;
       line-height: 14px;
-      margin-right: 10px;
       padding: 0 10px;
       &:hover{
-        background-color: $mintBlue;
-        border: 1px solid #fff;
-        border-bottom: 1px solid $mintBlue;
         color: #000;
       }
     }
     .title {
-      a{
-        color: #333;
+      h1 {
+        margin: 0;
+        a{
+          color: #333;
+        }
       }
     }
   }

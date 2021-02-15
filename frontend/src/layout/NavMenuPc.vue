@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="pull-right">
-      <ul class="nav-menu-pc pull-right pr20">
+      <ul class="nav-menu-pc pull-right pr40">
         <li v-for="route in routes"
             :key="route.id"
             :class="{ active: route.path === index }"
