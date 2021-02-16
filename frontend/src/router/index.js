@@ -41,7 +41,7 @@ const router = new Router({
           }
         },
         {
-          path: 'tools/index',
+          path: 'tools/list',
           name: 'Tools',
           component: () => import('@/views/tools/index'),
           meta: {
@@ -50,7 +50,7 @@ const router = new Router({
         },
         {
           path: 'tools',
-          redirect: '/tools/index',
+          redirect: '/tools/list',
           component: { render: c => c('router-view') },
           children: [
             {

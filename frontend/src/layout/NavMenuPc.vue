@@ -49,7 +49,7 @@ export default {
         {
           id: 2,
           name: 'Tools',
-          path: '/tools'
+          path: '/tools/list'
         }
       ],
       searchActive: false,
@@ -116,34 +116,6 @@ export default {
   }
   .search-zone {
     cursor: pointer;
-  }
-  .ant-input-group > .ant-input:first-child {
-    border: none;
-    border-bottom: 1px solid $lightGrey;
-  }
-  .ant-input-search-enter-button
-    input
-    + .ant-input-group-addon
-    .ant-input-search-button {
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-  }
-  .ant-btn-primary {
-    border: none;
-    background-color: #000;
-    &:hover {
-      background-color: #333;
-    }
-    box-shadow: none !important;
-  }
-  .ant-input:hover {
-    border-color: $mintBlue;
-  }
-  .ant-input:focus {
-    border-color: $mintBlue;
-    border-right-width: 1px !important;
-    outline: 0;
-    box-shadow: none;
   }
 }
 </style>
