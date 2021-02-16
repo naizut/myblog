@@ -101,7 +101,7 @@ export default {
       transition: ease 0.3s all;
       a {
         color: #000;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 100px;
         transition: ease 0.3s all;
         display: block;
