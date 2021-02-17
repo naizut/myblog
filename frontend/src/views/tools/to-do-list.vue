@@ -1,10 +1,12 @@
 <template>
   <div class="app to-do-list page-content-wrap">
     <el-row class="text-left f16 mb20 time-remain">Till the end of today: {{ hoursRemain }} </el-row>
-    <el-row class="text-left f16 mb20 time-remain">Till the end of closing time: {{ workHoursRemain }} </el-row>
     <el-row class="mb15 f24 title text-left">
-      <span class="pull-left">To dos :</span>
-      <el-button class="pull-right" @click="clearAll()">Clear</el-button>
+      <el-col :span="22">
+        <span class="pull-left">To dos :</span>
+        <el-button class="pull-right" @click="clearAll()">Clear</el-button>
+      </el-col>
+
     </el-row>
     <!--使用draggable组件-->
     <el-row>
@@ -159,11 +161,11 @@ export default {
   .add-todo, .remove { cursor: pointer; }
   .el-icon-circle-plus-outline {line-height: 50px;}
   .item {
+    align-items: center;
     border: solid 1px #eee;
     cursor: move;
     display: flex;
-    align-items: center;
-    font-family: 'Lato';
+
     &.done {
       background: black;
       color: #80ffff;

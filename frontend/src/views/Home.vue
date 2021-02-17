@@ -8,12 +8,6 @@
       <el-row>
         Hello Welcome 2 Ky's lab
       </el-row>
-      <ul>
-        <li v-for="i in list"
-            v-once
-            :key="i.id"
-        >{{ i.id }}</li>
-      </ul>
     </div>
     <Footer />
   </div>
@@ -30,8 +24,6 @@ export default {
   },
   data() {
     return {
-      list: [1, 233, 45],
-      iv: ''
     }
   },
   computed: {

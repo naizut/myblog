@@ -30,7 +30,10 @@ ul{
 }
 
 .to-do-list {
-  .el-input .el-input__inner { height: 50px; }
+  .el-input .el-input__inner {
+    font-weight: 300;
+    height: 50px;
+   }
 }
 
 .el-input .el-input__inner { border-radius: 0; }
