@@ -23,6 +23,10 @@ ul{
     &.active .el-input__inner, &.active .el-input__inner:focus { width: 200px !important; }
     .el-input__suffix {right: 0;}
   }
+  &.is-home .el-input__inner {
+    border-radius: 5px;
+    text-indent: 15px;
+  }
 }
 
 .to-do-list {

@@ -2,6 +2,7 @@
   <div class="navbar-container">
     <div class="pull-right">
       <div class="search-zone"
+           :class="isHome?'is-home':''"
            @click="addWidth()"
            @mouseenter="addWidth()"
       >
@@ -22,7 +23,7 @@
             :key="route.id"
             :class="{ active: route.path === index }"
         >
-          <router-link :to="route.path">{{ route.name }}</router-link>
+          <router-link :to="route.path" :class="isHome?'is-home':''">{{ route.name }}</router-link>
         </li>
       </ul>
     </div>
@@ -31,6 +32,12 @@
 </template>
 <script>
 export default {
+  props: {
+    isHome: {
+      type: Boolean,
+      required: true
+    }
+  },
   data() {
     return {
       index: '',
@@ -106,6 +113,7 @@ export default {
         transition: ease 0.3s all;
         display: block;
         padding: 0 20px;
+        &.is-home {color: #fff;}
       }
       &.active a { color : $mintBlue; }
       &:hover {

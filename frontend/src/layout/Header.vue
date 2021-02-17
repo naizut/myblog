@@ -4,12 +4,13 @@
       <router-link to="/"
                    class="logo"
       >
-        <img src="@/assets/brand.png"
+        <!-- <img src="@/assets/brand.png"
              alt="Logo"
         >
-        <span>s</span>
+        <span>s</span> -->
+        <span>Ky's</span>
       </router-link>
-      <NavMenuPc ref="navbarPC" />
+      <NavMenuPc ref="navbarPC" :is-home="isHome" />
     </div>
   </nav>
 </template>
@@ -20,6 +21,12 @@ export default {
   components: {
     NavMenuPc
   },
+  props: {
+    isHome: {
+      type: Boolean,
+      required: true
+    }
+  },
   methods: {
     shortenSearchInput() {
       this.$refs.navbarPC.reduceWidth()
@@ -29,10 +36,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 .header {
-  background-color: #fff;
-  height: 100px;
   border-bottom: 5px solid transparent;
   box-sizing: content-box;
+
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
   .header__content {
     margin: 0 auto;
     max-width: 1200px;

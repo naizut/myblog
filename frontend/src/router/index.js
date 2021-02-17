@@ -18,11 +18,6 @@ const router = new Router({
       component: () => import('@/layout'),
       children: [
         {
-          path: 'home',
-          name: 'Home',
-          component: () => import('@/views/Home')
-        },
-        {
           path: 'blog',
           name: 'Blog',
           component: () => import('@/views/blog/Index')
@@ -66,6 +61,11 @@ const router = new Router({
           component: () => import('@/views/Search')
         }
       ]
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: () => import('@/views/Home')
     }
   ]
 })

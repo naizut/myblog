@@ -43,6 +43,21 @@ export default {
           name: 'Tuntex',
           filename: 'tuntex.svg',
           url: 'https://www.tuntex-carpet.com/'
+        },
+        {
+          name: '紫江',
+          filename: 'zijiang.svg',
+          url: 'http://zijiangfoundation.com/'
+        },
+        {
+          name: '幸福五号',
+          filename: 'zizhu.svg',
+          url: 'http://www.zizhufive.org/'
+        },
+        {
+          name: 'WeEn-semi',
+          filename: 'ween.svg',
+          url: 'https://www.ween-semi.com/'
         }
       ]
     }
