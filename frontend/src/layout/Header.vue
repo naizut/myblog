@@ -36,7 +36,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .header {
-  background: #fff;
   border-bottom: 5px solid transparent;
   box-sizing: content-box;
 
