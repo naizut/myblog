@@ -1,6 +1,9 @@
 <template>
   <div class="about">
     <div class="my-production page-content-wrap">
+      <el-row>
+        人生可以有无数次的失败 但只需要一次成功就够了
+      </el-row>
       <el-row class="text-left f24 text-bold mt30">
         Major developer in these projects:
       </el-row>
