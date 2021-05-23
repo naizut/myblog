@@ -41,8 +41,8 @@ export default {
 
   height: 100px;
   width: 100%;
-  position: fixed;
-  top: 0;
+  // position: fixed;
+  // top: 0;
   z-index: 1;
   .header__content {
     margin: 0 auto;

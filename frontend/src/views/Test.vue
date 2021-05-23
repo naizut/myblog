@@ -22,13 +22,13 @@ export default {
       evt.preventDefault()
       y2 = parseInt(evt.touches[0].pageY)
       if (y2 - y1 > 0) {
-        console.log('down')
         document.body.scrollTop -= y2 - y1
       } else {
-        console.log('up')
         document.body.scrollTop += y1 - y2
       }
     }, { passive: false })
+  },
+  created() {
   }
 }
 </script>

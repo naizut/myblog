@@ -2,9 +2,9 @@
   <div class="home">
     <Header ref="header" :is-home="true" />
     <div class="body">
-      <div class="banner">
+      <!-- <div class="banner">
         <img src="../assets/images/banner.jpg" alt="">
-      </div>
+      </div> -->
       <el-row>
         Hello Welcome 2 Ky's lab
       </el-row>

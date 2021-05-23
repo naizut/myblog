@@ -20,17 +20,17 @@ const router = new Router({
         {
           path: 'blog',
           name: 'Blog',
-          component: () => import('@/views/blog/Index')
+          component: () => import('@/views/blog/index')
         },
         {
           path: 'blog/:id',
           name: 'BlogDetail',
-          component: () => import('@/views/blog/Detail')
+          component: () => import('@/views/blog/detail')
         },
         {
           path: 'about',
           name: 'About',
-          component: () => import('@/views/About'),
+          component: () => import('@/views/about'),
           meta: {
             title: 'About'
           }
@@ -58,19 +58,19 @@ const router = new Router({
         {
           path: 'search',
           name: 'Search',
-          component: () => import('@/views/Search')
+          component: () => import('@/views/search')
         }
       ]
     },
     {
       path: '/home',
       name: 'Home',
-      component: () => import('@/views/Home')
+      component: () => import('@/views/home')
     },
     {
       path: '/test',
       name: 'Test',
-      component: () => import('@/views/Test')
+      component: () => import('@/views/test')
     }
   ]
 })
