@@ -31,7 +31,7 @@ export default {
   width: 100%;
   .layout__content-container {
     min-height: calc(100vh - 46px);
-    padding-top: 100px;
+    padding-top: 30px;
     position: relative;
     .layout__content {
 

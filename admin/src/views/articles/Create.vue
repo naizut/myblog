@@ -4,7 +4,7 @@
             <a-form-item class="article-title" :span="4">
                 <a-input
                 v-decorator="['title', { rules: [{ required: true, message: '文章标题必须填写.'}]}]"
-                placeholder='文章11标题'
+                placeholder='文章标题'
                 auto-focus
                 ></a-input>
             </a-form-item>
@@ -25,7 +25,7 @@
                 <a-button type="success" html-type="submit" class="btn-submit">提交</a-button>
                 <!-- <a-button type="danger"  @click="clear">清空</a-button> -->
             </div>
-            <a-form-item>
+            <a-form-item style="margin: 0;">
                 <a-input type="hidden" v-decorator="['created_on']"></a-input>
             </a-form-item>
         </a-form>
@@ -75,7 +75,7 @@ export default {
       })
     },
     clear () {
-	  this.$refs.editor.clear()
+      this.$refs.editor.clear()
     }
   }
 }
@@ -93,9 +93,12 @@ export default {
     }
 }
 .article-content {
-    margin-bottom: 50px;
+    margin-bottom: 24px;
 }
 .article-form {
     max-width: 1140px;
+}
+.ant-form-item-children input {
+    height: 40px;
 }
 </style>
