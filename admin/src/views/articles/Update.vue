@@ -1,5 +1,8 @@
 <template>
     <div class="article-form-update">
+      <div class="back" @click="$router.go(-1)">
+        返回
+      </div>
         <a-form class="form-update-article" :form="form" @submit="publishNow">
             <a-form-item class="article-title" :span="4">
                 <a-input
@@ -94,6 +97,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.back {margin-bottom: 20px;cursor: pointer;width: 40px;}
 .btn-wrap {
     display: flex;
     align-items: center;
