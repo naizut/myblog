@@ -1,8 +1,17 @@
 <template>
-  <div class="page-content-wrap article-list mt50">
-    <header class="views-header">
+  <div class="article-list">
+    <!-- BreadCrumb Here -->
+    <div class="bread-crumb pd20">
+      <router-link to="">Home</router-link> > Blog
+    </div>
+
+    <!-- Banner && Brief Here -->
+    <!-- Filter Here -->
+    <!-- <header class="views-header">
       <div class="views-filters" />
-    </header>
+    </header> -->
+    <!-- 多个分类的前几篇文章代替filters -->
+    <!--  -->
     <el-row v-for="article in articles"
             :key="article.id"
             class="article mt20 pd20"
@@ -14,7 +23,7 @@
           </router-link>
         </h1>
       </el-row>
-      <el-row>
+      <!-- <el-row>
         {{ article.created_on }}
       </el-row>
       <el-row class="tags mt10">
@@ -23,7 +32,7 @@
               :key="j"
               class="tag"
         >{{ tag }}</span>
-      </el-row>
+      </el-row> -->
     </el-row>
   </div>
 </template>
@@ -47,10 +56,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.page-content-wrap {
+.article-list {
   .article {
-    border-bottom: 1px solid #666;
-    box-shadow: 0 2px 8px 0 rgba(58,128,205,0.2);
+
     text-align: left;
     padding-left: 20px;
     .tag {

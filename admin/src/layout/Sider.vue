@@ -4,7 +4,9 @@
         <template v-for="(item) in menuList">
             <a-menu-item :key="item.pageUrl">
                 <router-link :to="item.pageUrl">
+
                     <span class="nav-text">{{item.menuName}}</span>
+                    <a-icon style="margin-left: 10px;" type="edit" />
                 </router-link>
             </a-menu-item>
         </template>

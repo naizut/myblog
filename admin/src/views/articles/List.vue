@@ -63,118 +63,119 @@
 <script>
 export default {
   name: 'ArticlesList',
-  data() {
-      return {
-          articles: {},
-          ModalText: "确认删除？",
-          visible: false,
-          confirmLoading: false,
-          toDelete: 0,
-          isSort:1,
-          selected:3,
-          pageTotal: 0,
-          pageSize: 5,
-          pageNums: 0,
-          pageIndex: 0,
-          current: 1
-      }
+  data () {
+    return {
+      articles: {},
+      ModalText: '确认删除？',
+      visible: false,
+      confirmLoading: false,
+      toDelete: 0,
+      isSort: 1,
+      selected: 3,
+      pageTotal: 0,
+      pageSize: 5,
+      pageNums: 0,
+      pageIndex: 0,
+      current: 1
+    }
   },
-  created() {
-      var that = this
-      this.axios({
-          method: 'get',
-          url: '/api/articles/list',
-          params: {
-              limit: that.pageSize,
-              offset: that.pageIndex,
-          }
-      }).then(res => {
-          this.articles = res.data.rows
-          this.pageTotal = res.data.count
-          this.pageNums = Math.ceil(res.data.count / that.pageSize)
-          this.sortBy('created_on')
-          console.log(res)
-      }).catch(err=>{
-          console.log(err)
-      })
+  created () {
+    var that = this
+    this.axios({
+      method: 'get',
+      url: '/api/articles/list',
+      params: {
+        limit: that.pageSize,
+        offset: that.pageIndex
+      }
+    }).then(res => {
+      this.articles = res.data.rows
+      this.pageTotal = res.data.count
+      this.pageNums = Math.ceil(res.data.count / that.pageSize)
+      this.sortBy('created_on')
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
   },
   methods: {
-    toUpdate(i) {
-        this.$router.push({
-            name: 'update',
-            params: {id: this.articles[i].id}
-        })
+    toUpdate (i) {
+      this.$router.push({
+        name: 'update',
+        params: { id: this.articles[i].id }
+      })
     },
-    confirmDelete(i) {
-        this.visible = true
-        this.toDelete = i
-        this.ModalText = '删除文章' + this.articles[i].title + '?';
-        this.pageNums -= 1
+    confirmDelete (i) {
+      this.visible = true
+      this.toDelete = i
+      this.ModalText = '删除文章' + this.articles[i].title + '?'
+      this.pageNums -= 1
     },
-    setPageSize(e) {
-        this.pageSize = parseInt(e.key) * 5
-        this.pageNums = Math.ceil(this.pageTotal / this.pageSize)
-        this.switchPage(this.current)
+    setPageSize (e) {
+      this.pageSize = parseInt(e.key) * 5
+      this.pageNums = Math.ceil(this.pageTotal / this.pageSize)
+      this.switchPage(this.current)
     },
-    handleOk(e) {
+    handleOk (e) {
       var articles = this.articles
       var toDestroy = {}
       toDestroy.id = articles[this.toDelete].id
-      this.confirmLoading = true;
+      this.confirmLoading = true
 
       this.axios({
-          url: '/api/articles/delete',
-          method: 'post',
-          data: toDestroy
+        url: '/api/articles/delete',
+        method: 'post',
+        data: toDestroy
       }).then(res => {
         articles.splice(this.toDelete, 1)
-        this.visible = false;
-        this.confirmLoading = false;
+        this.visible = false
+        this.confirmLoading = false
       }).catch(err => {
-          console.log(err)
+        console.log(err)
       })
     },
-    handleCancel(e) {
-      console.log('Clicked cancel button');
-      this.visible = false;
+    handleCancel (e) {
+      console.log('Clicked cancel button')
+      this.visible = false
     },
-    sortByString($prop) {
-        var that = this
-        function compare(args) {
-          return function(a, b){
-            var v1 = a[args]
-            var v2 = b[args]
-            for(let i=0;i<(v1.length<=v2.length?v1.length:v2.length);i++) {
-                if(v1[i] != v2[i]){
-                    return (!that.isSort)?v1.localeCompare(v2):v2.localeCompare(v1)
-                }
+    sortByString ($prop) {
+      var that = this
+      function compare (args) {
+        return function (a, b) {
+          var v1 = a[args]
+          var v2 = b[args]
+          for (let i = 0; i < (v1.length <= v2.length ? v1.length : v2.length); i++) {
+            if (v1[i] != v2[i]) {
+              return (!that.isSort) ? v1.localeCompare(v2) : v2.localeCompare(v1)
             }
           }
         }
-        this.articles = this.articles.sort(compare($prop))
-        that.isSort = that.isSort?0:1;
+      }
+      this.articles = this.articles.sort(compare($prop))
+      that.isSort = that.isSort ? 0 : 1
     },
-    sortBy(field) {
+    sortBy (field) {
       this.sortByString(field)
     },
-    switchPage($count) {
-        var that = this
-        this.current = $count
-        this.axios({
-            method: 'get',
-            url: '/api/articles/list',
-            params: {
-                offset: ($count - 1) * that.pageSize,
-                limit:  that.pageSize
-            }
-        }).then(res=>{
-            that.articles = res.data.rows
-        })
+    switchPage ($count) {
+      var that = this
+      this.current = $count
+      this.axios({
+        method: 'get',
+        url: '/api/articles/list',
+        params: {
+          offset: ($count - 1) * that.pageSize,
+          limit: that.pageSize
+        }
+      }).then(res => {
+        that.articles = res.data.rows
+      })
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+.view-list * {text-align: center;}
 .ant-row {
     margin: 10px 0;
     button {
@@ -228,5 +229,12 @@ a.title {
             }
         }
     }
+}
+.inner-wrap {
+    padding: 24px;
+    background: #fff;
+    margin: auto;
+    width: calc(100% - 48px);
+    margin-top: 24px;
 }
 </style>

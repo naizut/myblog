@@ -1,0 +1,47 @@
+.ant-layout-sider {
+  background: #000 !important;
+}
+.ant-menu-dark, .ant-menu-dark .ant-menu-sub {
+  background: #000 !important;
+}
+.ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+  background: #333 !important;
+}
+.ant-menu-vertical .ant-menu-item,
+.ant-menu-vertical-left .ant-menu-item,
+.ant-menu-vertical-right .ant-menu-item,
+.ant-menu-inline .ant-menu-item,
+.ant-menu-vertical .ant-menu-submenu-title,
+.ant-menu-vertical-left .ant-menu-submenu-title,
+.ant-menu-vertical-right .ant-menu-submenu-title,
+.ant-menu-inline .ant-menu-submenu-title{
+  margin-top: 0 !important;
+}
+.ant-btn-primary {
+  background-color: #000 !important;
+  border-color: transparent;
+}
+.ant-input {
+  border-radius: 0 !important;
+}
+.ant-input:hover, .ant-input:focus {
+  border-color: #999 !important;
+  box-shadow: none !important;
+}
+.ant-btn-primary:hover, .ant-btn-primary:focus {
+  border-color:  transparent !important;
+  opacity: .8;
+}
+
+.ant-form-explain, .ant-form-extra {
+  padding-top: 7px !important;
+}
+
+.ant-layout-content {
+  min-height: auto !important;
+}
+
+.userlogin-panel {
+  min-width: 0 !important;
+}
+.userlogin-panel button {position: absolute}

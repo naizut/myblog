@@ -10,17 +10,17 @@ function toInt(str) {
 
 class ArticleController extends Controller {
   async create() {
-    const { ctx, app } = this
-    const { title, content, type, tag, created_on } = ctx.request.body
-    const article = await ctx.model.Article.create({ title, content, type, tag, created_on })
+    const { ctx, app } = this;
+    const { title, content, type, tag, created_on } = ctx.request.body;
+    const article = await ctx.model.Article.create({ title, content, type, tag, created_on });
     ctx.status = 201;
-    
+
     ctx.body = article;
   }
 
   async index() {
     const ctx = this.ctx;
-    const query = { limit: toInt(ctx.query.limit), offset: toInt(ctx.query.offset), order: [['created_on', 'desc' ]] };
+    const query = { limit: toInt(ctx.query.limit), offset: toInt(ctx.query.offset), order: [[ 'created_on', 'desc' ]] };
     ctx.body = await ctx.model.Article.findAndCountAll(query);
   }
 
@@ -38,20 +38,20 @@ class ArticleController extends Controller {
   }
 
   async detail() {
-    const { ctx } = this
-    const id = toInt(ctx.params.id)
+    const { ctx } = this;
+    const id = toInt(ctx.params.id);
     ctx.body = await ctx.model.Article.findByPk(id);
   }
 
   async update() {
-    const { ctx } = this
+    const { ctx } = this;
     const { id, title, content, type, tag, modified_on } = ctx.request.body;
     const article = await ctx.model.Article.findByPk(toInt(id));
     if (!article) {
       ctx.status = 404;
       return;
     }
-    
+
     await article.update({ title, content, type, tag, modified_on });
     ctx.body = article;
   }
@@ -59,10 +59,18 @@ class ArticleController extends Controller {
   async search() {
     const ctx = this.ctx;
     const keywords = ctx.query.keyword;
-    console.log(keywords)
-    const Sequelize = require('sequelize')
-    const Op = Sequelize.Op
+    console.log(keywords);
+    const Sequelize = require('sequelize');
+    const Op = Sequelize.Op;
     ctx.body = await ctx.model.Article.findAll({ where: { title: { [Op.like]: `%${keywords}%` } } });
+  }
+
+  async getTypes() {
+    const ctx = this.ctx;
+    ctx.body = await ctx.model.Article.findAll({
+      attributes: [ 'type' ],
+    });
+
   }
 }
 

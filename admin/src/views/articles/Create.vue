@@ -1,5 +1,8 @@
 <template>
     <div class="article-form">
+        <div class="mb10">
+          <h3>创建文章</h3>
+        </div>
         <a-form class="form-create-article" :form="form" @submit="publishNow">
             <a-form-item class="article-title" :span="4">
                 <a-input
@@ -18,11 +21,11 @@
             <a-form-item>
                 <a-input
                 v-decorator="['type', { rules: [{ required: true, message: '请填写文章分类.'}]}]"
-                placeholder='文章分类'
+                :placeholder="`${types}`"
                 ></a-input>
             </a-form-item>
             <div class="btn-wrap">
-                <a-button type="success" html-type="submit" class="btn-submit">提交</a-button>
+                <button type="submit" class="btn-submit">提交</button>
                 <!-- <a-button type="danger"  @click="clear">清空</a-button> -->
             </div>
             <a-form-item style="margin: 0;">
@@ -38,16 +41,28 @@ export default {
   name: 'ArticlesCreate',
   data () {
     return {
-      msg: ''
+      msg: '',
+      types: ''
     }
   },
   beforeCreate () {
     this.form = this.$form.createForm(this, { name: 'publish_article' })
   },
+  created () {
+    this.getCategories()
+  },
   components: {
     tinymce
   },
   methods: {
+    getCategories () {
+      this.axios({
+        methods: 'post',
+        url: '/api/articles/types'
+      }).then(res => {
+        this.types = Array.from(new Set(res.data.map(x => x.type)))
+      })
+    },
     onClick () {
       console.log(this.$refs.editor.myValue)
     },
@@ -70,7 +85,7 @@ export default {
               console.log(err)
             })
         } else {
-          alert('错误格式！')
+          this.$notify('错误格式！')
         }
       })
     },
@@ -87,10 +102,6 @@ export default {
     button {
         margin-right: 10px;
     }
-    .btn-submit {
-        background-color: #1AAD19;
-        color: #fff;
-    }
 }
 .article-content {
     margin-bottom: 24px;
@@ -100,5 +111,16 @@ export default {
 }
 .ant-form-item-children input {
     height: 40px;
+}
+.article-form {
+  background: #fff;
+  padding: 24px;
+  width: 800px;
+  margin: auto !important;
+  margin-top: 24px !important;
+
+  @media screen and (max-width: 1200px) {
+    width: calc(100% - 48px);
+  }
 }
 </style>

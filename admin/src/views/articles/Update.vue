@@ -22,7 +22,7 @@
                 ></a-input>
             </a-form-item>
             <div class="btn-wrap">
-                <a-button type="success" html-type="submit" class="btn-submit">提交</a-button>
+                <button type="submit" class="btn-submit">提交</button>
                 <!-- <a-button type="danger"  @click="clear">清空</a-button> -->
             </div>
             <a-form-item style="margin: 0;">
@@ -100,16 +100,20 @@ export default {
     button {
         margin-right: 10px;
     }
-    .btn-submit {
-        background-color: #1AAD19;
-        color: #fff;
-    }
 }
 .article-content {
     margin-bottom: 24px;
 }
-.article-form {
-    max-width: 1140px;
+.article-form-update {
+  background: #fff;
+  padding: 24px;
+  width: 800px;
+  margin: auto !important;
+  margin-top: 24px !important;
+
+  @media screen and (max-width: 1200px) {
+    width: calc(100% - 48px);
+  }
 }
 .ant-form-item-children input {
     height: 40px;

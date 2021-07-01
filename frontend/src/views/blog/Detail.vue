@@ -1,6 +1,6 @@
 <template>
   <div class="article detail">
-    <article class="detail__content">
+    <article class="article__content">
       <h1>{{ article.title }}</h1>
       <h5>{{ article.modified_on }}</h5>
       <p class="" v-html="article.content" />
@@ -33,10 +33,5 @@ h1 {
 }
 .article.detail {
     overflow: hidden;
-}
-.detail__content {
-    background-color: #fff;
-    border-radius: 5px;
-    margin-top: 100px;
 }
 </style>
