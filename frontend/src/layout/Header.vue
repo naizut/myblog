@@ -8,7 +8,7 @@
              alt="Logo"
         >
         <span>s</span> -->
-        <span>Ky's</span>
+        <span>Ky's Lab</span>
       </router-link>
       <NavMenuPc ref="navbarPC" :is-home="isHome" />
     </div>
@@ -49,18 +49,16 @@ export default {
     max-width: 1200px;
     display: flex;
     a.logo {
-      width: 200px;
       display: flex;
       line-height: 100px;
       text-decoration: none;
+      width: 200px;
       img {
         height: 100px;
       }
       span {
-        color: $mintBlue;
-        font-size: 50px;
-        font-family: Baskerville, 'Goudy Old Style', Palatino, 'Book Antiqua',
-          Symbol, serif;
+        color: #000;
+        font-size: 30px;
       }
     }
   }

@@ -23,9 +23,24 @@
             :key="route.id"
             :class="{ active: route.path === index }"
         >
-          <router-link :to="route.path" :class="isHome?'is-home':''">{{ route.name }}</router-link>
+          <router-link :to="route.path"
+                       :class="[isHome?'is-home':'',route.id==0?'is-blog':'']"
+          >{{ route.name }}</router-link>
         </li>
       </ul>
+    </div>
+
+    <div id="typesDropdown"
+         :class="showTypesDropdown?'active':''"
+         @mouseover="showTypesDropdown=true"
+         @mouseleave="showTypesDropdown=false"
+    >
+      <el-col v-for="type in types"
+              :key="type.id"
+              :span="6"
+      >
+        <router-link :to="`/blog?type=${type}`">{{ type }}</router-link>
+      </el-col>
     </div>
   </div>
 
@@ -45,8 +60,8 @@ export default {
       routes: [
         {
           id: 1,
-          name: 'About',
-          path: '/about'
+          name: 'Contact',
+          path: '/contact'
         },
         {
           id: 0,
@@ -59,8 +74,10 @@ export default {
           path: '/tools/list'
         }
       ],
+      types: [],
       searchActive: false,
-      searchText: ''
+      searchText: '',
+      showTypesDropdown: false
     }
   },
   watch: {
@@ -71,8 +88,17 @@ export default {
       }
     }
   },
+  created() {
+    this.getTypes()
+  },
   mounted() {
     this.index = window.location.pathname
+    document.querySelector('.is-blog').onmouseover = () => {
+      this.showTypesDropdown = true
+    }
+    document.querySelector('.is-blog').onmouseout = () => {
+      this.showTypesDropdown = false
+    }
   },
   methods: {
     addWidth() {
@@ -90,6 +116,14 @@ export default {
           }
         })
       }
+    },
+    getTypes() {
+      this.axios({
+        methods: 'get',
+        url: '/api/articles/types'
+      }).then(res => {
+        this.types = Array.from(new Set(res.data.map(x => x.type)))
+      })
     }
   }
 }
@@ -113,7 +147,7 @@ export default {
         transition: ease 0.3s all;
         display: block;
         padding: 0 20px;
-        &.is-home {color: #fff;}
+        // &.is-home {color: #fff;}
       }
       &.active a { color : $mintBlue; }
       &:hover {
@@ -124,6 +158,24 @@ export default {
   }
   .search-zone {
     cursor: pointer;
+  }
+
+  #typesDropdown {
+    box-sizing: border-box;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    width: 100%;
+    height: 0px;
+    border-bottom: 1px solid #dadada;
+    background: #fff;
+    overflow: hidden;
+
+    transition: all .6s ease;
+    z-index: 999;
+    &.active {
+      height: 100px;
+    }
   }
 }
 </style>

@@ -50,6 +50,11 @@ pre {
   text-align: left;
 }
 
+h1 {font-size: 45px;}
+h2 {font-size: 30px;}
+h3 {font-size: 24px;}
+h4 {font-size: 20px;}
+
 .bread-crumb { text-align: left; }
 
 .page-content-wrap {
@@ -75,12 +80,8 @@ pre {
 
   h1,h2,h3,h4,p,ul {margin-top: 0}
 
-  h1, h2, h3, h4 {margin-bottom: 8px;}
+  h1, h2, h3, h4 {margin-bottom: 12px;}
   ul, p {margin-bottom: 24px;}
-  h1 {font-size: 45px;}
-  h2 {font-size: 30px;}
-  h3 {font-size: 24px;}
-  h4 {font-size: 20px;}
 }
 ::-webkit-scrollbar {
   /*滚动条整体样式*/

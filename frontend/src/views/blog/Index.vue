@@ -11,17 +11,17 @@
       <div class="views-filters" />
     </header> -->
     <!-- 多个分类的前几篇文章代替filters -->
-    <!--  -->
+    <!-- 列表模块 -->
     <el-row v-for="article in articles"
             :key="article.id"
             class="article mt20 pd20"
     >
       <el-row class="title">
-        <h1>
+        <h3>
           <router-link :to="{ name: 'BlogDetail', params: { id: article.id } }">
             {{ article.title }}
           </router-link>
-        </h1>
+        </h3>
       </el-row>
       <!-- <el-row>
         {{ article.created_on }}
@@ -45,9 +45,13 @@ export default {
     }
   },
   created() {
+    const that = this
     this.axios({
       url: '/api/articles/list',
-      method: 'get'
+      method: 'get',
+      params: {
+        type: that.$route.query.type || ''
+      }
     }).then(res => {
       console.log(res)
       this.articles = res.data.rows

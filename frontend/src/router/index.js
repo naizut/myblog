@@ -28,11 +28,11 @@ const router = new Router({
           component: () => import('@/views/blog/detail')
         },
         {
-          path: 'about',
-          name: 'About',
-          component: () => import('@/views/about'),
+          path: 'contact',
+          name: 'Contact',
+          component: () => import('@/views/contact'),
           meta: {
-            title: 'About'
+            title: 'Contact me'
           }
         },
         {
