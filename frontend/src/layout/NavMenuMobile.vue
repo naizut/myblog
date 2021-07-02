@@ -12,6 +12,11 @@
           <router-link to="/home">Home</router-link>
           <i class="el-icon-arrow-right pull-right" />
         </li>
+        <li @click="goto('/about')">
+          <router-link to="/about">About</router-link>
+          <i class="el-icon-arrow-right pull-right" />
+          <ul />
+        </li>
         <li @click="goto('/blog')">
           <router-link to="/blog">Blog</router-link>
           <i class="el-icon-arrow-right pull-right" />

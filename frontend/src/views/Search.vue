@@ -5,7 +5,10 @@
         <h2 class="mt0">Found result for &lt; <span class="text-primary">{{ keyword }}</span> &gt; </h2>
       </el-row>
       <section class="mt50 text-left">
-        <div v-for="article in articles" :key="article.id">
+        <div v-for="article in articles"
+             :key="article.id"
+             style="line-height: 50px"
+        >
           <router-link :to="{name: 'BlogDetail', params: {id: article.id}}">
             {{ article.title }}
           </router-link>

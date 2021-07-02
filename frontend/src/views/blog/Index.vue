@@ -13,17 +13,17 @@
     </header> -->
       <!-- 多个分类的前几篇文章代替filters -->
       <!-- 列表模块 -->
-      <el-row class="article-list-title mb10 fadeIn">
-        <span class="pull-left">文章列表</span>
+      <el-row class="article-list-title mb50 fadeIn">
+        <span class="pull-left f24">文章列表</span>
         <span class="pull-right f14">更多</span>
       </el-row>
       <el-row v-for="article in articles"
               :key="article.id"
-              class="article fadeIn"
+              class="article"
       >
         <el-row class="title">
           <router-link :to="{ name: 'BlogDetail', params: { id: article.id } }">
-            {{ article.title }}
+            &lt; {{ article.title }} &gt;
           </router-link>
         </el-row>
       <!-- <el-row>
@@ -70,6 +70,10 @@ export default {
   }
   .article {
     text-align: left;
+    transition: all .2s;
+    &:hover {
+      opacity: .5;
+    }
     .tag {
       color: #666;
       cursor: pointer;
@@ -82,7 +86,7 @@ export default {
     }
     .title {
       a {
-        font-size:24px;
+        font-size:20px;
         line-height: 48px;
         font-weight: 300;
         color: #666;

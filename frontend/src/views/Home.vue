@@ -12,33 +12,19 @@
           <el-row class="banner-text pt0">
             In <span class="text-primary">DESIGN</span> we believe.
           </el-row>
-        </div>
-      </div>
 
-      <div class="about">
-        <div class="my-production page-content-wrap">
-
-          <el-row class="text-left f24 text-bold mt30">
-            Major developer in these projects:
-          </el-row>
-          <el-row class="projects" :gutter="20">
-            <el-col v-for="(proj, index) in projects"
-                    :key="index"
-                    class="item mt50"
-                    :sm="4"
-                    :xs="12"
-                    @click.native="goTo(proj.url)"
+          <!-- <el-row v-for="blog in blogs" :key="blog.id">
+            Type: {{ blog.name }}
+            <router-link v-for="title in blog.value"
+                         :key="title.id"
+                         :to="`/blog/${title.id}`"
             >
-              <el-row class="cover">
-                <img :src="getProjImg(proj.filename)">
-              </el-row>
-              <!-- <el-row class="name">
-                {{ proj.name }}
-              </el-row> -->
-            </el-col>
-          </el-row>
+              {{ title.title }}
+            </router-link>
+          </el-row> -->
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -48,37 +34,7 @@
     name: 'Home',
     data() {
       return {
-        projects: [{
-            name: 'high创',
-            filename: 'highco.svg',
-            url: 'http://www.highcogroup.com'
-          },
-          {
-            name: '歐寶',
-            filename: 'eurobath.svg',
-            url: 'http://www.eurobath.cn'
-          },
-          {
-            name: 'Tuntex',
-            filename: 'tuntex.svg',
-            url: 'https://www.tuntex-carpet.com/'
-          },
-          {
-            name: '紫江',
-            filename: 'zijiang.svg',
-            url: 'http://zijiangfoundation.com/'
-          },
-          {
-            name: '幸福五号',
-            filename: 'zizhu.svg',
-            url: 'http://www.zizhufive.org/'
-          },
-          {
-            name: 'WeEn-semi',
-            filename: 'ween.svg',
-            url: 'https://www.ween-semi.com/'
-          }
-        ]
+        blogs: []
       }
     },
     computed: {
@@ -96,19 +52,26 @@
       this.axios({
         url: '/api/articles/list',
         method: 'get'
-      }).then((res) => {})
-    },
-    beforeCreate() {},
-    mounted() {
-      console.log(this)
-    },
-    methods: {
-      getProjImg(filename) {
-        return require('@/assets/images/about/' + filename)
-      },
-      goTo(url) {
-        window.location.href = url
-      }
+      }).then((res) => {
+        const that = this
+        res.data.rows.forEach(el => {
+          if (that.blogs.indexOf(el.type) == -1) {
+            that.blogs.push({
+              name: el.type,
+              value: [{
+                title: el.title,
+                id: el.id
+              }]
+            })
+          } else {
+            that.blogs.find(x => x.name == el.type).value.push({
+              title: el.title,
+              id: el.id
+            })
+          }
+        })
+        console.log('xxx', that.blogs)
+      })
     }
   }
 </script>
@@ -152,40 +115,4 @@
 
   }
 
-  .about {
-    .my-production {
-      padding: 20px;
-
-      .projects {
-        display: flex;
-        justify-content: center;
-
-        .item {
-          cursor: pointer;
-          transition: all 0.2s;
-
-          &:hover {
-            opacity: 0.7;
-          }
-
-          .cover {
-            display: table-cell;
-            vertical-align: middle;
-
-            height: 100px;
-            width: 100px;
-
-            img {
-              width: 100%;
-            }
-          }
-
-          .name {
-            font-size: 28px;
-            font-weight: 400;
-          }
-        }
-      }
-    }
-  }
 </style>

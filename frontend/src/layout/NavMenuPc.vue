@@ -159,7 +159,7 @@ export default {
 <style lang="scss" scoped>
 .navbar-container {
   width: 100%;
-  .el-col { transition: all 0.6s ease-in-out; }
+  .el-col { transition: all 0.6s ease-in-out;margin-bottom: 15px; }
   ul.nav-menu-pc {
     margin: 0;
     display: flex;
