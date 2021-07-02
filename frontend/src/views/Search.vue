@@ -1,16 +1,17 @@
 <template>
   <div class="search-result">
-    <el-row>
-      <span>Search result for : </span>
-      <span class="text-bold">'{{ keyword }}'</span>
-    </el-row>
-    <section>
-      <div v-for="article in articles" :key="article.id">
-        <router-link :to="{name: 'BlogDetail', params: {id: article.id}}">
-          {{ article.title }}
-        </router-link>
-      </div>
-    </section>
+    <div class="inner-wrap">
+      <el-row class="text-left mt50">
+        <h2 class="mt0">Found result for &lt; <span class="text-primary">{{ keyword }}</span> &gt; </h2>
+      </el-row>
+      <section class="mt50 text-left">
+        <div v-for="article in articles" :key="article.id">
+          <router-link :to="{name: 'BlogDetail', params: {id: article.id}}">
+            {{ article.title }}
+          </router-link>
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 <script>
@@ -33,4 +34,8 @@ export default {
 }
 </script>
 <style lang="scss">
+.search-result {
+  h1,h2,h3,span {font-weight: 300}
+  a {font-size: 24px;}
+}
 </style>

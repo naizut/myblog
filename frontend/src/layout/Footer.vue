@@ -5,7 +5,7 @@
       <span class="ml5 bei-an">
         <a href="https://beian.aliyun.com/">沪ICP备16033447号-3</a>
       </span>
-      <span class="ml10">Based on Vue / Eggjs</span>
+      <span id="tech-stack" class="ml10">Based on Vue / Eggjs</span>
     </div>
   </nav>
 </template>
@@ -25,6 +25,11 @@ export default {
     font-family: 'Alfphabet';
     .bei-an a {
       color: #666;
+    }
+    #tech-stack {
+      @media screen and (max-width: 1200px) {
+        display: block;
+      }
     }
   }
 }

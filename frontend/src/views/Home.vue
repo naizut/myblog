@@ -1,17 +1,18 @@
 <template>
   <div class="home">
-    <Header ref="header" :is-home="true" />
     <div class="body">
       <!-- <div class="banner">
         <img src="../assets/images/banner.jpg" alt="">
       </div> -->
-      <div class="banner text-center">
-        <el-row class="banner-text">
-          Just for FUN.
-        </el-row>
-        <el-row class="banner-text pt0">
-          We design, we create, and we believe.
-        </el-row>
+      <div class="banner-zone text-center">
+        <div class="inner-wrap">
+          <el-row class="banner-text">
+            Just for <span class="text-primary">FUN</span>.
+          </el-row>
+          <el-row class="banner-text pt0">
+            In <span class="text-primary">DESIGN</span> we believe.
+          </el-row>
+        </div>
       </div>
 
       <div class="about">
@@ -39,19 +40,12 @@
         </div>
       </div>
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
-  import Header from '@/layout/Header'
-  import Footer from '@/layout/Footer'
   export default {
     name: 'Home',
-    components: {
-      Header,
-      Footer
-    },
     data() {
       return {
         projects: [{
@@ -123,7 +117,7 @@
     .body {
       min-height: 100vh;
 
-      .banner {
+      .banner-zone {
         height: 768px;
         overflow: hidden;
 
@@ -132,15 +126,25 @@
         }
 
         .banner-text {
-          width: 80vw;
           text-align: left;
-          margin: auto;
           color: #000;
           font-size: 48px;
           padding-top: 167px;
+          opacity: 0;
+          animation: fadeIn 2s forwards;
+          &:nth-child(2) {
+            animation-delay: 1s;
+          }
 
-          @media screen and (max-width: 1280px) {
-            font-size: 36px;
+          @media screen and (max-width: 1024px) {
+            padding-top: 120px;
+          }
+
+          @media screen and (max-width: 425px) {
+            padding-top: 50px;
+            max-width: 250px;
+            text-align: center;
+            margin: auto;
           }
         }
       }

@@ -33,5 +33,6 @@ h1 {
 }
 .article.detail {
     overflow: hidden;
+    padding: 15px;
 }
 </style>

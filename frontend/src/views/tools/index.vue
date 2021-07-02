@@ -44,7 +44,6 @@ export default {
     .name {
       font-size: 24px;
       font-family: 'Lato';
-      font-weight: bold;
       line-height: 28px;
     }
   }

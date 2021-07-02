@@ -18,17 +18,27 @@ const router = new Router({
       component: () => import('@/layout'),
       children: [
         {
-          path: 'blog',
+          path: '/about',
+          name: 'About',
+          component: () => import('@/views/about')
+        },
+        {
+          path: '/home',
+          name: 'Home',
+          component: () => import('@/views/home')
+        },
+        {
+          path: '/blog',
           name: 'Blog',
           component: () => import('@/views/blog/index')
         },
         {
-          path: 'blog/:id',
+          path: '/blog/:id',
           name: 'BlogDetail',
           component: () => import('@/views/blog/detail')
         },
         {
-          path: 'contact',
+          path: '/contact',
           name: 'Contact',
           component: () => import('@/views/contact'),
           meta: {
@@ -62,11 +72,7 @@ const router = new Router({
         }
       ]
     },
-    {
-      path: '/home',
-      name: 'Home',
-      component: () => import('@/views/home')
-    },
+
     {
       path: '/test',
       name: 'Test',

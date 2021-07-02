@@ -1,7 +1,7 @@
 <template>
   <nav class="header">
     <div class="header__content">
-      <router-link to="/"
+      <router-link to="/home"
                    class="logo"
       >
         <!-- <img src="@/assets/brand.png"
@@ -16,6 +16,7 @@
 </template>
 <script>
 import NavMenuPc from './NavMenuPc'
+
 export default {
   name: 'Header',
   components: {
@@ -48,6 +49,9 @@ export default {
     margin: 0 auto;
     max-width: 1200px;
     display: flex;
+    @media screen and (max-width: 1200px) {
+      padding: 0 20px;
+    }
     a.logo {
       display: flex;
       line-height: 100px;

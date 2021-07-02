@@ -1,6 +1,6 @@
 <template>
   <div class="navbar-container">
-    <div class="pull-right">
+    <div class="pull-right nav-pc">
       <div class="search-zone"
            :class="isHome?'is-home':''"
            @click="addWidth()"
@@ -17,17 +17,28 @@
         </el-input>
       </div>
     </div>
-    <div class="pull-right">
+    <div class="pull-right nav-pc">
       <ul class="nav-menu-pc pull-right pr40">
         <li v-for="route in routes"
             :key="route.id"
             :class="{ active: route.path === index }"
         >
-          <router-link :to="route.path"
-                       :class="[isHome?'is-home':'',route.id==0?'is-blog':'']"
+
+          <template v-if="route.id == 1">
+            <a href="#"
+               class="is-blog"
+               @click="showTypesDropdown=!showTypesDropdown"
+            >{{ route.name }}</a>
+          </template>
+          <router-link v-else
+                       :to="route.path"
+                       :class="[isHome?'is-home':'']"
           >{{ route.name }}</router-link>
         </li>
       </ul>
+    </div>
+    <div class="pull-right nav-mobile" @click="showNavMobile">
+      <div class="burger" />
     </div>
 
     <div id="typesDropdown"
@@ -35,18 +46,27 @@
          @mouseover="showTypesDropdown=true"
          @mouseleave="showTypesDropdown=false"
     >
-      <el-col v-for="type in types"
-              :key="type.id"
-              :span="6"
-      >
-        <router-link :to="`/blog?type=${type}`">{{ type }}</router-link>
-      </el-col>
+      <div class="inner-wrap">
+        <el-col v-for="type in types"
+                :key="type.id"
+                :span="6"
+                class="text-left"
+        >
+          <router-link :to="`/blog?type=${type}`">{{ type }}</router-link>
+        </el-col>
+      </div>
     </div>
+    <NavMenuMobile />
   </div>
 
 </template>
 <script>
+import NavMenuMobile from './NavMenuMobile.vue'
+
 export default {
+  components: {
+    NavMenuMobile
+  },
   props: {
     isHome: {
       type: Boolean,
@@ -59,18 +79,23 @@ export default {
       nowIndex: '',
       routes: [
         {
-          id: 1,
-          name: 'Contact',
-          path: '/contact'
+          id: 0,
+          name: 'About',
+          path: '/about'
         },
         {
-          id: 0,
+          id: 1,
           name: 'Blog',
           path: '/blog'
         },
         {
           id: 2,
-          name: 'Tools',
+          name: 'Contact',
+          path: '/contact'
+        },
+        {
+          id: 3,
+          name: 'Service',
           path: '/tools/list'
         }
       ],
@@ -124,6 +149,9 @@ export default {
       }).then(res => {
         this.types = Array.from(new Set(res.data.map(x => x.type)))
       })
+    },
+    showNavMobile() {
+      document.querySelector('.nav-menu-mobile').classList.add('active')
     }
   }
 }
@@ -175,6 +203,23 @@ export default {
     z-index: 999;
     &.active {
       height: 100px;
+    }
+
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
+  }
+
+  .nav-pc {
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
+  }
+  .nav-mobile {
+    display: none;
+    margin-top: 40px;
+    @media screen and (max-width: 1200px)  {
+      display: block;
     }
   }
 }
