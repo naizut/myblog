@@ -1,6 +1,9 @@
 <template>
   <div class="nav-menu-mobile">
     <div class="nav-menu-mobile-header">
+      <div class="pull-left f30" @click="goto('/home')">
+        Ky's Lab
+      </div>
       <div class="close" @click="hideNavMenuMobile">
         <i class="el-icon-close" />
       </div>
@@ -21,10 +24,6 @@
           <router-link to="/blog">Blog</router-link>
           <i class="el-icon-arrow-right pull-right" />
           <ul />
-        </li>
-        <li @click="goto('/contact')">
-          <router-link to="/contact">Contact</router-link>
-          <i class="el-icon-arrow-right pull-right" />
         </li>
       </ul>
     </div>
@@ -62,7 +61,7 @@ export default {
   }
   .el-icon-arrow-right {margin-top: 2px;}
   .nav-menu-mobile-header {
-    padding: 20px;
+    padding: 35px 20px;
     overflow: hidden;
     .close {
       float: right;

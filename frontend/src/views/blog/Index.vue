@@ -14,8 +14,8 @@
       <!-- 多个分类的前几篇文章代替filters -->
       <!-- 列表模块 -->
       <el-row class="article-list-title mb50 fadeIn">
-        <span class="pull-left f24">文章列表</span>
-        <span class="pull-right f14">更多</span>
+        <span class="pull-left f24">Articles</span>
+        <span class="pull-right f14">More</span>
       </el-row>
       <el-row v-for="article in articles"
               :key="article.id"

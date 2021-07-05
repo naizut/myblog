@@ -80,24 +80,24 @@ export default {
       routes: [
         {
           id: 0,
-          name: 'About',
+          name: 'About&Contact',
           path: '/about'
         },
         {
           id: 1,
           name: 'Blog',
           path: '/blog'
-        },
-        {
-          id: 2,
-          name: 'Contact',
-          path: '/contact'
-        },
-        {
-          id: 3,
-          name: 'Service',
-          path: '/tools/list'
         }
+        // {
+        //   id: 2,
+        //   name: 'Contact',
+        //   path: '/contact'
+        // },
+        // {
+        //   id: 3,
+        //   name: 'MyTools',
+        //   path: '/tools/list'
+        // }
       ],
       types: [],
       searchActive: false,
@@ -159,7 +159,7 @@ export default {
 <style lang="scss" scoped>
 .navbar-container {
   width: 100%;
-  .el-col { transition: all 0.6s ease-in-out;margin-bottom: 15px; }
+  .el-col { transition: all 0.6s ease-in-out;margin-bottom: 12px; }
   ul.nav-menu-pc {
     margin: 0;
     display: flex;

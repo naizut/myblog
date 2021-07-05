@@ -7,6 +7,10 @@
       </el-main>
     </el-container>
     <Footer />
+
+    <div id="modeSwitch" @click="switchBlogMode">
+      <button style="background: #fff;">Blog mode</button>
+    </div>
   </div>
 </template>
 <script>
@@ -19,10 +23,23 @@ export default {
     Header,
     Footer
   },
+  data() {
+    return {
+      isNight: false
+    }
+  },
   methods: {
     shortenSearchInput() {
       this.$refs.header.shortenSearchInput()
+    },
+    switchBlogMode() {
+      Array.from(document.getElementsByClassName('inner-wrap')).forEach(dom => {
+        dom.classList.toggle('blog-mode')
+        const isCenter = dom.classList.contains('blog-mode')
+          document.querySelector('#modeSwitch button').innerText = isCenter ? 'Default mode' : 'Blog mode'
+      })
     }
+
   }
 }
 </script>
@@ -31,10 +48,21 @@ export default {
   width: 100%;
   .layout__content-container {
     min-height: calc(100vh - 46px);
-    padding-top: 30px;
     position: relative;
     .layout__content {
 
+    }
+  }
+
+  #modeSwitch {
+    position: absolute;
+    top: 0;
+    right: calc((100% - 1200px) / 2);
+    cursor: pointer;
+    font-size: 12px;
+
+    @media screen and (max-width: 1200px) {
+      display: none;
     }
   }
 }

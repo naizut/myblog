@@ -3,7 +3,7 @@
     <div class="inner-wrap">
       <!-- BreadCrumb Here -->
       <div class="bread-crumb pd20 mb50 pl0">
-        <router-link to="">Home</router-link> > <span class="text-primary">Contact</span>
+        <router-link to="/home">Home</router-link> > <span class="text-primary">Contact</span>
       </div>
       <div class="section contact-business">
         <h1>Contact:</h1>

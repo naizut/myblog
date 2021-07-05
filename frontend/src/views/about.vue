@@ -3,22 +3,28 @@
     <div class="inner-wrap">
       <!-- BreadCrumb Here -->
       <div class="bread-crumb pd20 mb50 pl0">
-        <router-link to="">Home</router-link> > <span class="text-primary">About</span>
+        <router-link to="/home">Home</router-link> > <span class="text-primary">About</span>
       </div>
 
       <div class="my-profile">
         <div class="avatar f28">
-          Avatar Here
+          <div class="avatar-img">I am Avatar :D</div>
+          <div class="info mt30">
+            <p>Mr. Zhou</p>
+            <h4>FE developer, 2yrs experience in website IT support and maintenances services.</h4>
+          </div>
         </div>
-        <div class="info f28">
-          <div>Nick name: Kenny</div>
-          <div>Post: FE Engineer</div>
+
+        <div class="contact">
+          <h1>CONTACT ME</h1>
+          <p class="f28">WeChat: <span class="text-primary">vincarchou</span> (Recommended)</p>
+          <h4 class="f18">Email: naizut@163.com (Business)</h4>
         </div>
       </div>
 
       <div class="my-production">
 
-        <el-row class="text-left f24 text-bold mt30">
+        <el-row class="text-center f24 mt30">
           Major developer in these projects:
         </el-row>
         <el-row class="projects" :gutter="20">
@@ -29,12 +35,9 @@
                   :xs="12"
                   @click.native="goTo(proj.url)"
           >
-            <el-row class="cover">
+            <div class="cover">
               <img :src="getProjImg(proj.filename)">
-            </el-row>
-            <!-- <el-row class="name">
-                {{ proj.name }}
-              </el-row> -->
+            </div>
           </el-col>
         </el-row>
       </div>
@@ -100,14 +103,60 @@
         width: 50%;
         float: left;
         text-align: left;
+        box-sizing: border-box;
+      }
+      h4 {
+        margin-top: 5px;
       }
       .avatar {
         animation: fadeInLeft 2s;
+        @media screen and (max-width: 768px) {
+          margin: auto;
+          float: none;
+          text-align: center;
+          width: 100%;
+          .avatar-img {
+            margin: auto;
+          }
+        }
+        .avatar-img {
+          border: 1px solid #f2f2f2;
+          border-radius: 150px;
+          width: 150px;
+          height: 150px;
+          line-height: 150px;
+          text-align: center;
+          font-size: 20px;
+        }
+      }
+      .contact {
+        border-left: 1px solid #c2c2c2;
+        padding-left: 30px;
+        padding-bottom: 50px;
+        p {margin-top: 30px;}
+        h1 {
+          margin: 0;
+          line-height: 150px;
+          font-size: 44px;
+        }
+        @media screen and (max-width: 768px) {
+          border-left: none;
+          padding-left: 0px;
+          width: 100%;
+          text-align: center;
+          p {margin-top: 0px;}
+          h1 {line-height: 120px;margin-top:30px;}
+        }
+
+      }
+      .contact > * {
+        font-weight: 300;
       }
     }
-    .my-production {
-      .projects {
 
+    .my-production {
+      padding-bottom: 30px;
+      .projects {
         .item {
           cursor: pointer;
           transition: all 0.2s;
@@ -117,14 +166,15 @@
           }
 
           .cover {
-            display: table-cell;
-            vertical-align: middle;
+            margin: auto;
 
             height: 100px;
+            line-height: 100px;
             width: 100px;
 
             img {
               width: 100%;
+              vertical-align: middle;
             }
           }
 

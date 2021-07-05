@@ -38,7 +38,7 @@ export default {
 <style lang="scss" scoped>
 .header {
   border-bottom: 5px solid transparent;
-  box-sizing: content-box;
+  box-sizing: border-box;
 
   height: 100px;
   width: 100%;

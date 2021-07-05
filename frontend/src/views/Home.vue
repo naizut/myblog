@@ -1,9 +1,6 @@
 <template>
   <div class="home">
     <div class="body">
-      <!-- <div class="banner">
-        <img src="../assets/images/banner.jpg" alt="">
-      </div> -->
       <div class="banner-zone text-center">
         <div class="inner-wrap">
           <el-row class="banner-text">
@@ -13,15 +10,45 @@
             In <span class="text-primary">DESIGN</span> we believe.
           </el-row>
 
-          <!-- <el-row v-for="blog in blogs" :key="blog.id">
-            Type: {{ blog.name }}
-            <router-link v-for="title in blog.value"
-                         :key="title.id"
-                         :to="`/blog/${title.id}`"
+        </div>
+      </div>
+
+      <div class="home-news">
+        <h1>What's new?</h1>
+        <h3>We plan to do at least one invention per week no matter if it really makes sense. </h3>
+        <swiper ref="mySwiper"
+                :options="swiperOption"
+                class="college-list"
+        >
+          <swiper-slide
+            v-for="(tool, index) in tools"
+            :key="index"
+            class="tool"
+            @click.native="goTo(tool.url)"
+          />
+        </swiper>
+      </div>
+
+      <div class="home-articles">
+        <div class="inner-wrap">
+          <h1>
+            Articles:
+          </h1>
+          <el-row v-for="blog in blogs" :key="blog.id">
+            <!-- Type: {{ blog.name }} -->
+            <router-link class="f20"
+                         :to="`/blog/${blog.id}`"
             >
-              {{ title.title }}
+              &lt; {{ blog.title }} &gt;
             </router-link>
-          </el-row> -->
+          </el-row>
+        </div>
+      </div>
+
+      <div class="home-topic">
+        <div class="inner-wrap">
+          <h1>Join Us</h1>
+          <p>We desire for one talented designer! <router-link class="text-primary" to="/about">Contact Me Now</router-link></p>
         </div>
       </div>
 
@@ -30,8 +57,14 @@
 </template>
 
 <script>
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.min.css'
   export default {
     name: 'Home',
+    components: {
+      swiper,
+      swiperSlide
+    },
     data() {
       return {
         blogs: []
@@ -54,21 +87,8 @@
         method: 'get'
       }).then((res) => {
         const that = this
-        res.data.rows.forEach(el => {
-          if (that.blogs.indexOf(el.type) == -1) {
-            that.blogs.push({
-              name: el.type,
-              value: [{
-                title: el.title,
-                id: el.id
-              }]
-            })
-          } else {
-            that.blogs.find(x => x.name == el.type).value.push({
-              title: el.title,
-              id: el.id
-            })
-          }
+        that.blogs = res.data.rows.sort((v1, v2) => {
+          return new Date(v2.created_on) - new Date(v1.created_on)
         })
         console.log('xxx', that.blogs)
       })
@@ -78,10 +98,8 @@
 <style lang="scss" scoped>
   .home {
     .body {
-      min-height: 100vh;
-
       .banner-zone {
-        height: 768px;
+        height: calc(100vh - 100px);
         overflow: hidden;
 
         img {
@@ -110,6 +128,26 @@
             margin: auto;
           }
         }
+      }
+
+      .home-news {
+        background: #000;
+        color: #fff;
+        padding: 30px 0;
+      }
+
+      .home-articles {
+        text-align: left;
+        padding: 30px 0;
+        h1 {
+          margin-bottom: 20px;
+        }
+      }
+
+      .home-topic {
+        background: #000;
+        color: #fff;
+        padding: 30px 0;
       }
     }
 

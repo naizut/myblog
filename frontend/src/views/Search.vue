@@ -2,7 +2,8 @@
   <div class="search-result">
     <div class="inner-wrap">
       <el-row class="text-left mt50">
-        <h2 class="mt0">Found result for &lt; <span class="text-primary">{{ keyword }}</span> &gt; </h2>
+        <h2 v-if="articles.length > 0" class="mt0">Found {{ articles.length }} result for &lt; <span class="text-primary">{{ keyword }}</span> &gt; </h2>
+        <h2 v-else>No result Found.</h2>
       </el-row>
       <section class="mt50 text-left">
         <div v-for="article in articles"
@@ -10,7 +11,7 @@
              style="line-height: 50px"
         >
           <router-link :to="{name: 'BlogDetail', params: {id: article.id}}">
-            {{ article.title }}
+            &lt; {{ article.title }} &gt;
           </router-link>
         </div>
       </section>
