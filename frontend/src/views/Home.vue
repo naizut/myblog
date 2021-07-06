@@ -16,17 +16,6 @@
       <div class="home-news">
         <h1>What's new?</h1>
         <h3>We plan to do at least one invention per week no matter if it really makes sense. </h3>
-        <swiper ref="mySwiper"
-                :options="swiperOption"
-                class="college-list"
-        >
-          <swiper-slide
-            v-for="(tool, index) in tools"
-            :key="index"
-            class="tool"
-            @click.native="goTo(tool.url)"
-          />
-        </swiper>
       </div>
 
       <div class="home-articles">
@@ -36,9 +25,7 @@
           </h1>
           <el-row v-for="blog in blogs" :key="blog.id">
             <!-- Type: {{ blog.name }} -->
-            <router-link class="f20"
-                         :to="`/blog/${blog.id}`"
-            >
+            <router-link class="f20" :to="`/blog/${blog.id}`">
               &lt; {{ blog.title }} &gt;
             </router-link>
           </el-row>
@@ -48,7 +35,9 @@
       <div class="home-topic">
         <div class="inner-wrap">
           <h1>Join Us</h1>
-          <p>We desire for one talented designer! <router-link class="text-primary" to="/about">Contact Me Now</router-link></p>
+          <p>We desire for one talented designer! <router-link class="text-primary" to="/about">Contact Me Now
+          </router-link>
+          </p>
         </div>
       </div>
 
@@ -57,14 +46,8 @@
 </template>
 
 <script>
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.min.css'
   export default {
     name: 'Home',
-    components: {
-      swiper,
-      swiperSlide
-    },
     data() {
       return {
         blogs: []
@@ -113,6 +96,7 @@ import 'swiper/dist/css/swiper.min.css'
           padding-top: 167px;
           opacity: 0;
           animation: fadeIn 2s forwards;
+
           &:nth-child(2) {
             animation-delay: 1s;
           }
@@ -139,6 +123,7 @@ import 'swiper/dist/css/swiper.min.css'
       .home-articles {
         text-align: left;
         padding: 30px 0;
+
         h1 {
           margin-bottom: 20px;
         }
@@ -152,5 +137,4 @@ import 'swiper/dist/css/swiper.min.css'
     }
 
   }
-
 </style>

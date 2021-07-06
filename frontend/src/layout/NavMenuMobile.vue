@@ -45,19 +45,22 @@ export default {
 <style lang="scss" scoped>
 .nav-menu-mobile {
   position: fixed;
-  left: -100%;
+  left: 0;
   top: 0;
   width: 100%;
   height: 100vh;
   background: #000;
   z-index: 999;
-  transform: translateX(-100%);
+  transform: translateZ(0);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
 
   color: #fff;
   a {color: #fff}
 
   &.active {
-    transform: translateX(0);
+    transform: scaleX(1);
   }
   .el-icon-arrow-right {margin-top: 2px;}
   .nav-menu-mobile-header {
