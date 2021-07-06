@@ -51,13 +51,13 @@ export default {
   height: 100vh;
   background: #000;
   z-index: 999;
-  transition: all .6s;
+  transform: translateX(-100%);
 
   color: #fff;
   a {color: #fff}
 
   &.active {
-    left: 0;
+    transform: translateX(0);
   }
   .el-icon-arrow-right {margin-top: 2px;}
   .nav-menu-mobile-header {
