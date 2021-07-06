@@ -202,9 +202,6 @@ a.title {
     cursor: pointer;
     padding-left: 30px;
 }
-.inner-wrap {
-    // min-height: 80vh;
-}
 .view-pager {
     display: flex;
     flex-direction: row;
@@ -236,5 +233,9 @@ a.title {
     margin: auto;
     width: calc(100% - 48px);
     margin-top: 24px;
+    overflow-x: auto;
+    .content {
+      min-width: 768px;
+    }
 }
 </style>
