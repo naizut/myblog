@@ -9,7 +9,7 @@
     <Footer />
 
     <div id="modeSwitch" @click="switchBlogMode">
-      <button style="background: #fff;">Blog mode</button>
+      <button style="background: #fff;border: 1px solid #ccc;">Blog mode</button>
     </div>
   </div>
 </template>

@@ -9,26 +9,22 @@
           <el-row class="banner-text pt0">
             In <span class="text-primary">DESIGN</span> we believe.
           </el-row>
+          <el-row class="banner-text pt0">
+            <button>Get design now</button>
+          </el-row>
 
         </div>
       </div>
 
       <div class="home-news">
-        <h1>What's new?</h1>
-        <h3>We plan to do at least one invention per week no matter if it really makes sense. </h3>
-      </div>
-
-      <div class="home-articles">
+        <h1 class="mb30">About Ky's Lab</h1>
         <div class="inner-wrap">
-          <h1>
-            Articles:
-          </h1>
-          <el-row v-for="blog in blogs" :key="blog.id">
-            <!-- Type: {{ blog.name }} -->
-            <router-link class="f20" :to="`/blog/${blog.id}`">
-              &lt; {{ blog.title }} &gt;
-            </router-link>
-          </el-row>
+          <h3>Ky's Lab means <span class="text-primary"
+                                   style="cursor: pointer"
+                                   @click="$router.push('/about')"
+          >Ky</span>
+            and Ky's friends who have extra-ordinary fatastic ideas and all ready to make it real. We take advantage of
+            weekends to achieve our aspirations. </h3>
         </div>
       </div>
 
@@ -89,6 +85,26 @@
           width: 100%;
         }
 
+                  button {
+            text-align: left;
+            color: #000;
+            font-size: 48px;
+            border: 1px solid #f2f2f2;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 30px;
+            font-weight: 300;
+            padding: 5px 20px;
+            transition: all .6s;
+            animation: fadeIn 2s forwards;
+            animation-delay: 2s;
+
+            &:hover {
+              background: #000;
+              color: #fff;
+            }
+          }
+
         .banner-text {
           text-align: left;
           color: #000;
@@ -106,7 +122,7 @@
           }
 
           @media screen and (max-width: 425px) {
-            padding-top: 50px;
+            padding-top: 60px;
             max-width: 250px;
             text-align: center;
             margin: auto;

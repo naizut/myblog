@@ -1,3 +1,8 @@
+// 覆盖组件或原生浏览器样式
+button {
+  font-family: inherit;
+}
+
 ul{
   padding-inline-start: 0;
 }

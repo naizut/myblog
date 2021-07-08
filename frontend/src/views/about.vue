@@ -99,26 +99,19 @@
     .my-profile {
       overflow: hidden;
       margin-bottom: 100px;
+
       >* {
         width: 50%;
         float: left;
         text-align: left;
         box-sizing: border-box;
       }
+
       h4 {
         margin-top: 5px;
       }
+
       .avatar {
-        animation: fadeInLeft 2s;
-        @media screen and (max-width: 768px) {
-          margin: auto;
-          float: none;
-          text-align: center;
-          width: 100%;
-          .avatar-img {
-            margin: auto;
-          }
-        }
         .avatar-img {
           border: 1px solid #f2f2f2;
           border-radius: 150px;
@@ -127,35 +120,68 @@
           line-height: 150px;
           text-align: center;
           font-size: 20px;
+          animation: fadeInLeft 2s;
+        }
+
+        .info {
+          animation: fadeInLeft 2s;
+        }
+
+        @media screen and (max-width: 768px) {
+          margin: auto;
+          float: none;
+          text-align: center;
+          width: 100%;
+
+          .avatar-img {
+            margin: auto;
+
+          }
         }
       }
+
       .contact {
         border-left: 1px solid #c2c2c2;
         padding-left: 30px;
         padding-bottom: 50px;
-        p {margin-top: 30px;}
+        animation: fadeInTop 2s;
+
         h1 {
           margin: 0;
           line-height: 150px;
           font-size: 44px;
         }
+
+        p {
+          margin-top: 30px;
+        }
+
         @media screen and (max-width: 768px) {
           border-left: none;
           padding-left: 0px;
           width: 100%;
           text-align: center;
-          p {margin-top: 0px;}
-          h1 {line-height: 120px;margin-top:30px;}
+
+          p {
+            margin-top: 0px;
+          }
+
+          h1 {
+            line-height: 120px;
+            margin-top: 30px;
+          }
         }
 
       }
-      .contact > * {
+
+      .contact>* {
         font-weight: 300;
       }
     }
 
     .my-production {
       padding-bottom: 30px;
+
       .projects {
         .item {
           cursor: pointer;
