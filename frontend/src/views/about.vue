@@ -8,7 +8,7 @@
 
       <div class="my-profile">
         <div class="avatar f28">
-          <div class="avatar-img">I am Avatar :D</div>
+          <div class="avatar-img">I'm Avatar :D</div>
           <div class="info mt30">
             <p>Mr. Zhou</p>
             <h4>FE developer, 2yrs experience in website IT support and maintenances services.</h4>

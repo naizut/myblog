@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     shortenSearchInput() {
-      this.$refs.navbarPC.reduceWidth()
+      this.$refs.navbarPC.hideSearchBar()
     }
   }
 }

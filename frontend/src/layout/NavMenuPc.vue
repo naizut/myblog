@@ -3,10 +3,12 @@
     <div class="pull-right nav-pc">
       <div class="search-zone"
            :class="isHome?'is-home':''"
-           @click="addWidth()"
-           @mouseenter="addWidth()"
+           @click="showSearchBar()"
+           @mouseenter="showSearchBar()"
+           @mouseleave="hideSearchBar()"
       >
-        <el-input v-model="searchText"
+        <el-input ref="search"
+                  v-model="searchText"
                   placeholder="Search Title."
                   :class="searchActive?'active':''"
                   @keyup.enter.native="onSearch(searchText)"
@@ -37,7 +39,9 @@
         </li>
       </ul>
     </div>
-    <div class="pull-right nav-mobile" @click="showNavMobile">
+    <div class="pull-right nav-mobile"
+         @click="showNavMobile"
+    >
       <div class="burger" />
     </div>
 
@@ -126,11 +130,13 @@ export default {
     }
   },
   methods: {
-    addWidth() {
+    showSearchBar() {
       this.searchActive = true
     },
-    reduceWidth() {
-      this.searchActive = false
+    hideSearchBar() {
+      if (!this.$refs.search.focused) {
+        this.searchActive = false
+      }
     },
     onSearch(value) {
       if (value) {
@@ -146,8 +152,8 @@ export default {
       this.axios({
         methods: 'get',
         url: '/api/articles/types'
-      }).then(res => {
-        this.types = Array.from(new Set(res.data.map(x => x.type)))
+      }).then((res) => {
+        this.types = Array.from(new Set(res.data.map((x) => x.type)))
       })
     },
     showNavMobile() {
@@ -159,7 +165,10 @@ export default {
 <style lang="scss" scoped>
 .navbar-container {
   width: 100%;
-  .el-col { transition: all 0.6s ease-in-out;margin-bottom: 12px; }
+  .el-col {
+    transition: all 0.6s ease-in-out;
+    margin-bottom: 12px;
+  }
   ul.nav-menu-pc {
     margin: 0;
     display: flex;
@@ -177,7 +186,9 @@ export default {
         padding: 0 20px;
         // &.is-home {color: #fff;}
       }
-      &.active a { color : $mintBlue; }
+      &.active a {
+        color: $mintBlue;
+      }
       &:hover {
         // background-color: #333;
         opacity: 0.7;
@@ -199,7 +210,7 @@ export default {
     background: #fff;
     overflow: hidden;
 
-    transition: all .6s ease;
+    transition: all 0.6s ease;
     z-index: 999;
     &.active {
       height: 100px;
@@ -218,7 +229,7 @@ export default {
   .nav-mobile {
     display: none;
     margin-top: 40px;
-    @media screen and (max-width: 1200px)  {
+    @media screen and (max-width: 1200px) {
       display: block;
     }
   }
