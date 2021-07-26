@@ -1,5 +1,5 @@
 <template>
-  <div class="article-list">
+  <div class="article-list-page">
     <div class="inner-wrap">
       <!-- BreadCrumb Here -->
       <div class="bread-crumb pd20 mb50 pl0">
@@ -8,35 +8,30 @@
 
       <!-- Banner && Brief Here -->
       <!-- Filter Here -->
-      <!-- <header class="views-header">
-      <div class="views-filters" />
-    </header> -->
       <!-- 多个分类的前几篇文章代替filters -->
       <!-- 列表模块 -->
       <el-row class="article-list-title mb50 fadeIn">
         <span class="pull-left f24">Articles</span>
         <span class="pull-right f14">More</span>
       </el-row>
-      <el-row v-for="article in articles"
-              :key="article.id"
-              class="article"
-      >
-        <el-row class="title">
-          <router-link :to="{ name: 'BlogDetail', params: { id: article.id } }">
-            &lt; {{ article.title }} &gt;
-          </router-link>
+      <div class="article-list">
+        <el-row v-for="article in articles"
+                :key="article.id"
+                class="article"
+        >
+          <el-row class="title">
+            <router-link :to="{ name: 'BlogDetail', params: { id: article.id } }">
+              &lt; {{ article.title }} &gt;
+            </router-link>
+          </el-row>
+          <el-row class="f14">
+            {{ article.created_on }}
+          </el-row>
+          <el-row>
+            分类： {{ article.type }}
+          </el-row>
         </el-row>
-      <!-- <el-row>
-        {{ article.created_on }}
-      </el-row>
-      <el-row class="tags mt10">
-        <span class="mr20">Tags: </span>
-        <span v-for="(tag, j) in article.tag.split(',')"
-              :key="j"
-              class="tag"
-        >{{ tag }}</span>
-      </el-row> -->
-      </el-row>
+      </div>
     </div>
   </div>
 </template>
@@ -64,32 +59,51 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.article-list {
+.article-list-page {
   .article-list-title {
     text-align: left;
   }
-  .article {
-    text-align: left;
-    transition: all .2s;
-    &:hover {
-      opacity: .5;
-    }
-    .tag {
-      color: #666;
-      cursor: pointer;
-      font-size: 14px;
-      line-height: 14px;
-      padding: 0 10px;
-      &:hover{
-        color: #000;
+  .article-list {
+    border-left: 2px solid #f2f2f2;
+    padding-left: 20px;
+    .article {
+      text-align: left;
+      transition: all .2s;
+      position: relative;
+      margin-bottom: 30px;
+
+      &::after{
+        content: '';
+        position: absolute;
+        left: -26px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 10px;
+        background: #ccc;
+        border-radius: 10px;
       }
-    }
-    .title {
-      a {
-        font-size:20px;
-        line-height: 48px;
-        font-weight: 300;
+
+      &:hover {
+        opacity: .5;
+      }
+      .tag {
         color: #666;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 14px;
+        padding: 0 10px;
+        &:hover{
+          color: #000;
+        }
+      }
+      .title {
+        a {
+          font-size:20px;
+          line-height: 48px;
+          font-weight: 300;
+          color: #666;
+        }
       }
     }
   }

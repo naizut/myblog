@@ -25,8 +25,9 @@
       <div class="my-production">
 
         <el-row class="text-center f24 mt30">
-          Major developer in these projects:
+          Major developer or once involved in these projects(As reference):
         </el-row>
+
         <el-row class="projects" :gutter="20">
           <el-col v-for="(proj, index) in projects"
                   :key="index"

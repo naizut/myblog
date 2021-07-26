@@ -3,17 +3,19 @@
     <div class="body">
       <div class="banner-zone text-center">
         <div class="inner-wrap">
-          <el-row class="banner-text">
-            Just for <span class="text-primary">FUN</span>.
-          </el-row>
-          <el-row class="banner-text pt0">
-            In <span class="text-primary">DESIGN</span> we believe.
-          </el-row>
-          <el-row class="banner-text pt0 mt50">
-            <button>
-              Get Design Now
-            </button>
-          </el-row>
+          <div class="banner-text-wrap">
+            <el-row class="banner-text">
+              Just for <span class="text-primary">FUN</span>.
+            </el-row>
+            <el-row class="banner-text pt0">
+              In <span class="text-primary">DESIGN</span> we believe.
+            </el-row>
+            <el-row class="banner-text pt0 mt50">
+              <button>
+                <span>Get Design Now</span><i class="el-icon-right ml5" />
+              </button>
+            </el-row>
+          </div>
 
         </div>
       </div>
@@ -107,7 +109,7 @@ export default {
         cursor: pointer;
         font-size: 30px;
         font-weight: 300;
-        padding: 5px 20px;
+        padding: 10px 30px;
         transition: all 0.6s;
         animation-delay: 2s;
 
@@ -117,33 +119,37 @@ export default {
         }
       }
 
-      .banner-text {
-        text-align: left;
-        color: #000;
-        font-size: 48px;
-        padding-top: 167px;
-        opacity: 0;
-        animation: fadeInTop 2s forwards;
+      .banner-text-wrap {
+        margin-top: calc(50% - 50px);
+        transform: translateY(-50%);
+        .banner-text {
+          text-align: left;
+          color: #000;
+          font-size: 48px;
+          opacity: 0;
+          animation: fadeInTop 2s forwards;
 
-        &:nth-of-type(2) {
-          animation-delay: .5s;
-        }
+          &:nth-of-type(2) {
+            animation-delay: .5s;
+          }
 
-        &:nth-of-type(3) {
-          animation-delay: 1s;
-        }
+          &:nth-of-type(3) {
+            animation-delay: 1s;
+          }
 
-        @media screen and (max-width: 1024px) {
-          padding-top: 120px;
-        }
+          @media screen and (max-width: 1024px) {
+            padding-top: 120px;
+          }
 
-        @media screen and (max-width: 425px) {
-          padding-top: 60px;
-          max-width: 250px;
-          text-align: center;
-          margin: auto;
+          @media screen and (max-width: 425px) {
+            padding-top: 60px;
+            max-width: 250px;
+            text-align: center;
+            margin: auto;
+          }
         }
       }
+
     }
 
     .home-news {
