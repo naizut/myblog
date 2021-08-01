@@ -32,7 +32,7 @@
           <el-col v-for="(proj, index) in projects"
                   :key="index"
                   class="item mt50"
-                  :sm="4"
+                  :sm="8"
                   :xs="12"
                   @click.native="goTo(proj.url)"
           >
@@ -99,7 +99,7 @@
   .about {
     .my-profile {
       overflow: hidden;
-      margin-bottom: 100px;
+      margin-bottom: 150px;
 
       >* {
         width: 50%;
@@ -202,6 +202,13 @@
             img {
               width: 100%;
               vertical-align: middle;
+              transition: all .3s;
+            }
+
+            &:hover {
+              img {
+                transform: scale(1.5)
+              }
             }
           }
 
