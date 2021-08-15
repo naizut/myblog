@@ -115,9 +115,13 @@ export default {
         transition: all 0.6s;
         animation-delay: 2s;
 
+        a {transition: all .6s}
+
         &:hover {
           background: #000;
           color: #fff;
+
+          a {color: #fff}
         }
 
         @media screen and (max-width:425px) {
