@@ -12,7 +12,7 @@
             </el-row>
             <el-row class="banner-text pt0 mt50">
               <button>
-                <span>Get Design Now</span><i class="el-icon-right ml5" />
+                <a href="#ourService">Get Design Now</a><i class="el-icon-right ml5" />
               </button>
             </el-row>
           </div>
@@ -43,11 +43,13 @@
         </div>
       </div>
 
-      <div class="home-design">
+      <div id="ourService" class="home-design">
         <div class="inner-wrap">
           <h1 class="text-center">Service</h1>
-          <h3>· Responsive Design</h3>
-          <h3>· Affordable price</h3>
+          <ul>
+            <li>Responsive Design</li>
+            <li>Affordable price</li>
+          </ul>
         </div>
       </div>
 
@@ -117,10 +119,14 @@ export default {
           background: #000;
           color: #fff;
         }
+
+        @media screen and (max-width:425px) {
+          font-size: 22px;
+        }
       }
 
       .banner-text-wrap {
-        margin-top: calc(50% - 50px);
+        margin-top: calc(50vh - 50px);
         transform: translateY(-50%);
         .banner-text {
           text-align: left;
@@ -156,6 +162,7 @@ export default {
       background: #000;
       color: #fff;
       padding: 30px 0;
+      height: 50vh;
     }
 
     .home-design {
